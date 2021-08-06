@@ -1,0 +1,6 @@
+{
+    // need to execute task with user defined .bashrc
+    "terminal.integrated.shellArgs.linux": [
+        "-i"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+        },
+        {
+            "name": "Dart: Run all Tests",
+            "request": "launch",
+            "type": "dart",
+            "program": "./test/"
+        }
+    ]
+}
