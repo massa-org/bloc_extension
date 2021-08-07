@@ -12,16 +12,16 @@ part 'remote_blop.g.dart';
 @blopProcessor
 abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
     with BlocSubscriptionManager, _$RemoteDataBlop<T> {
-  final Duration reloadDebounceDuration;
   final Cubit<FutureOr<T> Function()> loaderBloc;
   final bool reloadOnLoaderChange;
 
   RemoteDataBlop(
     this.loaderBloc, {
-    this.reloadDebounceDuration = const Duration(milliseconds: 250),
-    this.reloadOnLoaderChange = false,
+    this.reloadOnLoaderChange = true,
+    bool reloadOnCreate = true,
   }) : super(RemoteDataModel.inital()) {
     if (reloadOnLoaderChange) listenBlocs([loaderBloc], reload);
+    if (reloadOnCreate) reload();
   }
 
   @override
@@ -41,18 +41,5 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
       yield RemoteDataModel.error(error);
       rethrow;
     }
-  }
-
-  @override
-  Stream<Transition<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>>
-      transformEvents(
-    Stream<BlopEvent<RemoteDataModel<T>>> events,
-    TransitionFunction<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>
-        transitionFn,
-  ) {
-    return super.transformEvents(
-      events,
-      transitionFn,
-    );
   }
 }
