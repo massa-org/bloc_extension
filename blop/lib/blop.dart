@@ -55,8 +55,6 @@ abstract class Blop<Event extends BlopEvent<State>, State>
   ) async {
     final event = BlopEvent(processFn);
 
-    add(event as Event); //wtf dart
-
     final cancelCubit = _cancelCubits.putIfAbsent(
       proccessName,
       () => _CancelCubit(CompleteReason.done(event.id)),
@@ -64,12 +62,15 @@ abstract class Blop<Event extends BlopEvent<State>, State>
 
     final _blocker = Completer();
 
+    // listen event complete
     event._completer.future.onError(
+      // map error to error event
       (error, stackTrace) {
         return CompleteReason.error(event.id, error!);
       },
     ).then(
       (e) {
+        //then call event to cancel other process
         e.maybeWhen(
           done: (id) {
             if (!_blocker.isCompleted) _blocker.complete();
@@ -84,6 +85,7 @@ abstract class Blop<Event extends BlopEvent<State>, State>
       },
     );
 
+    // listen cancel event
     final cSub = cancelCubit.stream.listen((cevent) {
       // prevent earlier started process from drop later process
       if (cevent.id > event.id && !_blocker.isCompleted) {
@@ -93,6 +95,9 @@ abstract class Blop<Event extends BlopEvent<State>, State>
         );
       }
     });
+
+    // register first and after that fire event
+    add(event as Event);
 
     await _blocker.future;
 

@@ -1,9 +1,6 @@
-# blop
+# blop_generator
 
-Business Logic Process
-
-Reimagination of BLOC architecture with main goal to decrease code size and add ability to detect while complicated process is end.
-
+A new Flutter package project.
 
 ## Getting Started
 
