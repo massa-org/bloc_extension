@@ -32,14 +32,14 @@ class MethodGenerator {
     return nameFromAnnotation ?? name.substring(1);
   }
 
-  String _genFullParams() {
+  String get methodParametersString {
     final typeParams = element.typeParameters.isNotEmpty
         ? '<${element.typeParameters.join(',')}>'
         : '';
-    return '$typeParams(${_genParams()})';
+    return '$typeParams($methodArgumentsString)';
   }
 
-  String _genParams() {
+  String get methodArgumentsString {
     final params = element.parameters;
     final buffer = StringBuffer();
 
@@ -71,9 +71,7 @@ class MethodGenerator {
     return buffer.toString();
   }
 
-  String get implString => '$processName${_genFullParams()}';
-
-  String get defString {
+  String get methodSignatureString {
     var returnString = returnTypeSwitch(
       stateType,
       element,
@@ -84,7 +82,7 @@ class MethodGenerator {
       orElse: () => null,
     );
 
-    return '$returnString $originalName${_genFullParams()};\n';
+    return '$returnString $originalName$methodParametersString;\n';
   }
 
   String get callString {
@@ -92,5 +90,43 @@ class MethodGenerator {
         .map((e) => (e.isNamed ? e.name + ':' : '') + e.name)
         .join(',');
     return '$originalName($callParams)';
+  }
+
+  String get methodString {
+    if (!generate) {
+      return '// generation skipped for method: $originalName cause no process name provided and method name not starts with _\n';
+    } else {
+      final processImplementation =
+          (String toStream, String generatorType) => '''
+
+// annotated element: $originalName generator: $generatorType
+Future<$stateType> $processName$methodParametersString async {
+  return executeProcess($toStream,'$originalName',);
+}
+
+''';
+
+      return returnTypeSwitch(
+        stateType,
+        element,
+        same: () => processImplementation(
+          '() => Future.value($callString).asStream()',
+          'stateType',
+        ),
+        stream: () => processImplementation(
+          '() => $callString',
+          'Stream<stateType>',
+        ),
+        future: () => processImplementation(
+          '() => $callString.asStream()',
+          'Future<stateType>',
+        ),
+        futureOr: () => processImplementation(
+          '() async *{yield (await $callString);}',
+          'FutureOr<stateType>',
+        ),
+        orElse: () => throw 'unsuported return type',
+      );
+    }
   }
 }
