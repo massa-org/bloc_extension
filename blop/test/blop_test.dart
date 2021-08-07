@@ -7,7 +7,7 @@ class TestBlop extends SimpleBlop<String> {
   TestBlop() : super('');
 
   Future<String> returnValue(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value;
       },
@@ -16,7 +16,7 @@ class TestBlop extends SimpleBlop<String> {
   }
 
   Future<String> returnLast(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
         yield value;
@@ -26,7 +26,7 @@ class TestBlop extends SimpleBlop<String> {
   }
 
   Future<String> throwValue(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
 
@@ -38,11 +38,11 @@ class TestBlop extends SimpleBlop<String> {
   }
 
   Future<String> multipleValue(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
 
-        Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 2));
 
         yield value;
       },
@@ -51,11 +51,11 @@ class TestBlop extends SimpleBlop<String> {
   }
 
   Future<String> multipleValueThrow(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
 
-        Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 2));
 
         yield value + 'as';
         throw value;
@@ -66,14 +66,18 @@ class TestBlop extends SimpleBlop<String> {
 }
 
 class DebounceBlop extends SimpleBlop<String> {
-  DebounceBlop() : super('');
+  DebounceBlop()
+      : super(
+          '',
+          completerStrategy: MethodCompleterStrategy.completeOlderSameType(),
+        );
 
   Future<String> multipleValue(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
 
-        Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 2));
 
         yield value;
       },
@@ -82,11 +86,11 @@ class DebounceBlop extends SimpleBlop<String> {
   }
 
   Future<String> multipleValueThrow(String value) {
-    return addProcess(
+    return executeMethod(
       () async* {
         yield value + '_some_random_shit';
 
-        Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 2));
 
         yield value + 'as';
         throw value;
