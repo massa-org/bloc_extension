@@ -25,3 +25,5 @@ dev_dependencies:
 
   blop_generator: 
     path: ../blop_generator
+  
+  build_runner: ^2.0.0

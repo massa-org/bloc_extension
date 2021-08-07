@@ -101,7 +101,7 @@ class MethodGenerator {
 
 // annotated element: $originalName generator: $generatorType
 Future<$stateType> $processName$methodParametersString async {
-  return executeProcess($toStream,'$originalName',);
+  return executeMethod($toStream,'$originalName',);
 }
 
 ''';

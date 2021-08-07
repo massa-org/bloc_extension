@@ -13,9 +13,9 @@ abstract class _BlopInterfaceRemoteDataBlop<T> {
 mixin _$RemoteDataBlop<T>
     on Blop<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>
     implements _BlopInterfaceRemoteDataBlop<T> {
-// marked element _reload generator: Stream<stateType>
+// annotated element: _reload generator: Stream<stateType>
   Future<RemoteDataModel<T>> reload() async {
-    return addProcess(
+    return executeMethod(
       () => _reload(),
       '_reload',
     );
