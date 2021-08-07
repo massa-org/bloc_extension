@@ -8,11 +8,11 @@ builders:
   generators:
     target: ":generators"
     # 1
-    import: "package:blop_generator/builder.dart"
+    import: "package:blop_generator/blop_generator.dart"
     # 2
     builder_factories: ["generateBlop"]
     # 3
-    build_extensions: { ".dart": [".g.dart"] }
+    build_extensions: { ".dart": [".gf.dart"] }
     auto_apply: dependents
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]

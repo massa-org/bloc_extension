@@ -10,11 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bloc: 
+  bloc: ^7.0.0
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  pedantic:
+  pedantic: ^1.11.1
 flutter:

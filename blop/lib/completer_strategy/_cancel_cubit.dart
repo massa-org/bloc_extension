@@ -6,7 +6,6 @@ class _CancelCubit extends Cubit<CompleteReason> {
 
 abstract class _CancelCubitCompleterStrategy
     implements MethodCompleterStrategy {
-  @protected
   Cubit<CompleteReason> cancelCubit(BlopEvent event);
 
   @override

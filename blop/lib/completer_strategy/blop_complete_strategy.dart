@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:blop/complete_reason.dart';
-import 'package:flutter/material.dart';
 
 import '../blop_closed_exception.dart';
 import '../blop_event.dart';
