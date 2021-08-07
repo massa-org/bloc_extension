@@ -31,7 +31,6 @@ class TestBlop extends SimpleBlop<String> {
         yield value + '_some_random_shit';
 
         throw value;
-        yield value + '_some_random_shit';
       },
       'throwValue',
     );

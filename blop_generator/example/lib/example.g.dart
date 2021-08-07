@@ -1,6 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 part of 'example.dart';
 
 // **************************************************************************
@@ -50,7 +49,7 @@ abstract class _BlopInterfaceBlopTestClass {
 
   Stream<String> _implicitStream();
 
-  FutureOr<String> _implicitFuture();
+  Future<String> _implicitFuture();
 
   String _implicitState();
 }
@@ -63,7 +62,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
     int num = 0,
     Future<int>? f,
   ]) async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_optional(v, num, f)).asStream(),
       '_optional',
     );
@@ -71,7 +70,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
 
 // marked element _empty generator: stateType
   Future<String> empty() async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_empty()).asStream(),
       '_empty',
     );
@@ -79,7 +78,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
 
 // marked element _emptyGeneric generator: stateType
   Future<String> emptyGeneric<T>() async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_emptyGeneric()).asStream(),
       '_emptyGeneric',
     );
@@ -87,7 +86,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
 
 // marked element _emptyGeneric2 generator: stateType
   Future<String> emptyGeneric2<T extends num, E>() async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_emptyGeneric2()).asStream(),
       '_emptyGeneric2',
     );
@@ -97,7 +96,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
   Future<String> optionalOnly([
     int n = 2,
   ]) async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_optionalOnly(n)).asStream(),
       '_optionalOnly',
     );
@@ -108,7 +107,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
     int n = 2,
     int? h,
   ]) async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_optionalOnly2(n, h)).asStream(),
       '_optionalOnly2',
     );
@@ -118,7 +117,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
   Future<String> namedOnly({
     int n = 2,
   }) async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_namedOnly(n: n)).asStream(),
       '_namedOnly',
     );
@@ -129,7 +128,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
     int n = 2,
     int? h,
   }) async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_namedOnly2(n: n, h: h)).asStream(),
       '_namedOnly2',
     );
@@ -141,7 +140,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
     int n = 2,
     int? h,
   }) async {
-    return addProcess(
+    return executeProcess(
       () async* {
         yield (await _named(v, n: n, h: h));
       },
@@ -153,7 +152,7 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
   Future<String> wtf(
     List<String> data,
   ) async {
-    return addProcess(
+    return executeProcess(
       () => flow(data),
       'flow',
     );
@@ -161,25 +160,23 @@ mixin _$BlopTestClass on Blop<BlopEvent<String>, String>
 
 // marked element _implicitStream generator: Stream<stateType>
   Future<String> implicitStream() async {
-    return addProcess(
+    return executeProcess(
       () => _implicitStream(),
       '_implicitStream',
     );
   }
 
-// marked element _implicitFuture generator: FutureOr<stateType>
+// marked element _implicitFuture generator: Future<stateType>
   Future<String> implicitFuture() async {
-    return addProcess(
-      () async* {
-        yield (await _implicitFuture());
-      },
+    return executeProcess(
+      () => _implicitFuture().asStream(),
       '_implicitFuture',
     );
   }
 
 // marked element _implicitState generator: stateType
   Future<String> implicitState() async {
-    return addProcess(
+    return executeProcess(
       () => Future.value(_implicitState()).asStream(),
       '_implicitState',
     );

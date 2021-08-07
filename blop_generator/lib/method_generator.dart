@@ -1,6 +1,8 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:blop/blop.dart';
 import 'package:blop_generator/return_type_switch.dart';
+import 'package:source_gen/source_gen.dart';
 
 class MethodGenerator {
   final String? processName;
@@ -19,8 +21,8 @@ class MethodGenerator {
     final name = element.name;
     if (name == null) throw 'Method has no name';
 
-    final nameFromAnnotation = element.metadata[0]
-        .computeConstantValue()
+    final nameFromAnnotation = TypeChecker.fromRuntime(BlopProcess)
+        .firstAnnotationOf(element)
         ?.getField('name')
         ?.toStringValue();
 
@@ -46,7 +48,7 @@ class MethodGenerator {
     final nam = params.where((e) => e.isNamed);
 
     if (req.isNotEmpty) buffer.write(req.join(',') + ',');
-    if (opt.isNotEmpty)
+    if (opt.isNotEmpty) {
       buffer.write(
         '[' +
             opt
@@ -55,7 +57,8 @@ class MethodGenerator {
                 .join(',') +
             ',]',
       );
-    if (nam.isNotEmpty)
+    }
+    if (nam.isNotEmpty) {
       buffer.write(
         '{' +
             nam
@@ -64,6 +67,7 @@ class MethodGenerator {
                 .join(',') +
             ',}',
       );
+    }
     return buffer.toString();
   }
 

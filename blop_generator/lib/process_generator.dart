@@ -48,16 +48,16 @@ class ProcessorGenerator {
     final name = processElement.originalName;
 
     if (!processElement.generate) {
-      return '// generation skipped for method: ${name} cause no process name provided and method name not starts with _\n';
+      return '// generation skipped for method: $name cause no process name provided and method name not starts with _\n';
     } else {
       final functionCall = processElement.callString;
 
       final processImplementation =
           (String toStream, String generatorType) => '''
 
-// marked element ${name} generator: $generatorType
-Future<${stateType}> ${processElement.implString} async {
-  return addProcess($toStream,'$name',);
+// marked element $name generator: $generatorType
+Future<$stateType> ${processElement.implString} async {
+  return executeProcess($toStream,'$name',);
 }
 
 ''';

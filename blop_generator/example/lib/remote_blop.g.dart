@@ -15,7 +15,7 @@ mixin _$RemoteDataBlop<T>
     implements _BlopInterfaceRemoteDataBlop<T> {
 // marked element _reload generator: Stream<stateType>
   Future<RemoteDataModel<T>> reload() async {
-    return addProcess(
+    return executeProcess(
       () => _reload(),
       '_reload',
     );
