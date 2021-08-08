@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:blop/complete_reason.dart';
 
+import 'method_execution_exception.dart';
+
 class BlopEvent<T> {
   static int _id = 0;
 
@@ -23,12 +25,15 @@ class BlopEvent<T> {
       }
       _completer.complete(CompleteReason.done(id));
     } catch (error) {
-      _completer.completeError(error);
+      throw MethodExecutionException(
+        error,
+        () => _completer.complete(CompleteReason.error(id, error)),
+      );
     }
   }
 
   @override
   String toString() {
-    return 'BlopEvent<$T>($id)';
+    return 'BlopEvent<$T>($id,$type)';
   }
 }

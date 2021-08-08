@@ -6,10 +6,7 @@ class _TypeBasedCompleterStrategy extends _CancelCubitCompleterStrategy {
 
   @override
   _CancelCubit cancelCubit(BlopEvent event) {
-    return _cancelCubits.putIfAbsent(
-      event.type,
-      () => _CancelCubit(CompleteReason.done(-1)),
-    );
+    return _cancelCubits.putIfAbsent(event.type, () => _CancelCubit());
   }
 
   @override

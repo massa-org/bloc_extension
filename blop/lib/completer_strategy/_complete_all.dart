@@ -2,7 +2,7 @@ part of 'blop_complete_strategy.dart';
 
 class _OlderCompleteStrategy extends _CancelCubitCompleterStrategy {
   // contains only Proccess count cubits
-  final _cancelCubit = _CancelCubit(CompleteReason.done(-1));
+  final _cancelCubit = _CancelCubit();
   @override
   Cubit<CompleteReason> cancelCubit(BlopEvent event) {
     return _cancelCubit;

@@ -1,7 +1,7 @@
 part of 'blop_complete_strategy.dart';
 
 class _CancelCubit extends Cubit<CompleteReason> {
-  _CancelCubit(CompleteReason initialState) : super(initialState);
+  _CancelCubit() : super(CompleteReason.done(-1));
 }
 
 abstract class _CancelCubitCompleterStrategy
@@ -16,12 +16,7 @@ abstract class _CancelCubitCompleterStrategy
 
     // listen event complete
     // ignore: unawaited_futures
-    event.completeFuture.onError(
-      // map error to error event
-      (error, stackTrace) {
-        return CompleteReason.error(event.id, error!);
-      },
-    ).then(
+    event.completeFuture.then(
       (e) {
         //then call event to cancel other process
         e.maybeWhen(

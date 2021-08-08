@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import 'blop_event.dart';
 import 'completer_strategy/blop_complete_strategy.dart';
+import 'method_execution_exception.dart';
 
 abstract class Blop<Event extends BlopEvent<State>, State>
     extends Bloc<Event, State> {
@@ -31,6 +32,14 @@ abstract class Blop<Event extends BlopEvent<State>, State>
     await completeFuture;
 
     return state;
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    if (error is MethodExecutionException) {
+      error.complete();
+    }
+    super.onError(error, stackTrace);
   }
 
   @override

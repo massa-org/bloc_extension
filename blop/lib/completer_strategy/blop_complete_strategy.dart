@@ -26,12 +26,11 @@ class _DoNothing implements MethodCompleterStrategy {
 
   @override
   Future<void> waitComplete(BlopEvent event) async {
-    // right now event.completeFuture can't complete with error from blop, they throw error
-    await event.completeFuture;
-    // final reason = await event.completeFuture;
-    // reason.maybeWhen(
-    //   error: (_, error) => throw error,
-    //   orElse: () {},
-    // );
+    final reason = await event.completeFuture;
+    reason.maybeWhen(
+      error: (id, error) => throw error,
+      cancelWithError: (id, error) => throw error,
+      orElse: () {},
+    );
   }
 }
