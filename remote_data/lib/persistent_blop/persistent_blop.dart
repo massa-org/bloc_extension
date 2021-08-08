@@ -13,8 +13,6 @@ part 'persistent_blop.g.dart';
 typedef _DefaultFn<T> = FutureOr<T> Function();
 
 abstract class PersistentStore<T> {
-  const PersistentStore();
-
   Future<void> init(_DefaultFn<T> defaultValue, String valueName);
 
   Future<T> load();
