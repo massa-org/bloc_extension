@@ -38,8 +38,10 @@ abstract class Blop<Event extends BlopEvent<State>, State>
   void onError(Object error, StackTrace stackTrace) {
     if (error is MethodExecutionException) {
       error.complete();
+      super.onError(error.error, stackTrace);
+    } else {
+      super.onError(error, stackTrace);
     }
-    super.onError(error, stackTrace);
   }
 
   @override
