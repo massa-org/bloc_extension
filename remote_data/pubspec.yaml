@@ -14,9 +14,13 @@ dependencies:
   
   bloc:
   blop: 
-    path: ../blop
+    git: 
+      url: git@github.com:massa-org/bloc_extension.git
+      path: blop
   bloc_utils:
-    path: ../bloc_utils
+    git: 
+      url: git@github.com:massa-org/bloc_extension.git
+      path: bloc_utils
 
   # for persistent store
   hive: ^2.0.0
@@ -28,6 +32,8 @@ dev_dependencies:
   pedantic: 
 
   blop_generator: 
-    path: ../blop_generator
+    git: 
+      url: git@github.com:massa-org/bloc_extension.git
+      path: blop_generator
   
   build_runner: ^2.0.0

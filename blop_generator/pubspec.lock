@@ -39,9 +39,11 @@ packages:
   blop:
     dependency: "direct main"
     description:
-      path: "../blop"
-      relative: true
-    source: path
+      path: blop
+      ref: HEAD
+      resolved-ref: "1ef6f7e0614d39a61579280a87f8045480cef758"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   boolean_selector:
     dependency: transitive
