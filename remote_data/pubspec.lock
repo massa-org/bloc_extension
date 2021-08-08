@@ -39,23 +39,29 @@ packages:
   bloc_utils:
     dependency: "direct main"
     description:
-      path: "../bloc_utils"
-      relative: true
-    source: path
+      path: bloc_utils
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   blop:
     dependency: "direct main"
     description:
-      path: "../blop"
-      relative: true
-    source: path
+      path: blop
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   blop_generator:
     dependency: "direct dev"
     description:
-      path: "../blop_generator"
-      relative: true
-    source: path
+      path: blop_generator
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   boolean_selector:
     dependency: transitive

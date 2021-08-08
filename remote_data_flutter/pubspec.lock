@@ -39,16 +39,20 @@ packages:
   bloc_utils:
     dependency: transitive
     description:
-      path: "../bloc_utils"
-      relative: true
-    source: path
+      path: bloc_utils
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   blop:
     dependency: transitive
     description:
-      path: "../blop"
-      relative: true
-    source: path
+      path: blop
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   boolean_selector:
     dependency: transitive
@@ -256,6 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -378,9 +389,11 @@ packages:
   remote_data:
     dependency: "direct main"
     description:
-      path: "../remote_data"
-      relative: true
-    source: path
+      path: remote_data
+      ref: HEAD
+      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
     version: "0.0.1"
   shelf:
     dependency: transitive
