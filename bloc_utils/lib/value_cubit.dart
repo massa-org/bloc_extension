@@ -8,6 +8,7 @@ class ValueCubit<T> extends Cubit<T> {
   ValueCubit(T initialState) : super(initialState);
 }
 
+// listen only data event
 class StreamCubit<T> extends Cubit<T> {
   late final StreamSubscription _sub;
 
@@ -26,4 +27,6 @@ class Cubits {
   static Cubit<T> fromValue<T>(T value) => ValueCubit(value);
   static Cubit<T> fromStream<T>(T initialValue, Stream<T> stream) =>
       StreamCubit(initialValue, stream);
+  static Cubit<T> fromFuture<T>(T initialValue, Future<T> future) =>
+      StreamCubit(initialValue, future.asStream());
 }
