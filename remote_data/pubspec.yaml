@@ -18,6 +18,10 @@ dependencies:
   bloc_utils:
     path: ../bloc_utils
 
+  # for persistent store
+  hive: ^2.0.0
+  # hive_flutter: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
