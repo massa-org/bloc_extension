@@ -1,13 +1,13 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:blop/blop.dart';
-import 'package:blop_generator/process_visitor.dart';
+import 'package:blop_generator/method_visitor.dart';
 import 'package:source_gen/source_gen.dart';
 
 class ProcessorGenerator {
   late final DartType stateType;
   late final DartType eventType;
-  late final ProcessVisitor visitor;
+  late final MethodVisitor visitor;
 
   final ClassElement element;
 
@@ -17,7 +17,7 @@ class ProcessorGenerator {
     );
     eventType = blopType.typeArguments[0];
     stateType = blopType.typeArguments[1];
-    visitor = ProcessVisitor(stateType);
+    visitor = MethodVisitor(stateType);
     element.visitChildren(visitor);
   }
 

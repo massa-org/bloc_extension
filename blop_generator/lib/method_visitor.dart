@@ -5,11 +5,11 @@ import 'package:blop/annotations.dart';
 import 'package:blop_generator/method_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
-class ProcessVisitor extends SimpleElementVisitor<void> {
+class MethodVisitor extends SimpleElementVisitor<void> {
   final DartType stateType;
   List<MethodGenerator> data = [];
 
-  ProcessVisitor(this.stateType);
+  MethodVisitor(this.stateType);
 
   @override
   void visitMethodElement(MethodElement element) {
