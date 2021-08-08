@@ -11,21 +11,19 @@ class RemoteDataBuilder<T extends RemoteDataBlop<E>, E>
   final bool isSliver;
   final Widget Function(BuildContext context, E data) builder;
 
-  Widget _wrap(Widget child) {
-    if (isSliver) return SliverToBoxAdapter(child: child);
-    return child;
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = RemoteDataTheme.of(context);
     return context.select(
       (T value) => value.state.maybeWhen(
         data: (data) => builder(context, data),
-        error: (e) => _wrap(
-          theme.errorBuilder(context, () => context.read<T>().reload(), e),
+        error: (e) => theme.errorBuilder(
+          isSliver,
+          context,
+          context.read<T>().reload,
+          e,
         ),
-        orElse: () => _wrap(theme.loadingBuilder(context)),
+        orElse: () => theme.loadingBuilder(isSliver, context),
       ),
     );
   }
