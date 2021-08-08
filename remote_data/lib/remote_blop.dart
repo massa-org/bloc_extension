@@ -6,7 +6,7 @@ import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
 import 'package:blop/blop_event.dart';
 
-import 'remote_model.dart';
+import 'remote_data_model/remote_model.dart';
 
 part 'remote_blop.g.dart';
 

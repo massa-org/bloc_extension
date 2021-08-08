@@ -4,55 +4,18 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_utils/value_cubit.dart';
 import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
-import 'package:hive/hive.dart';
-import 'package:remote_data/remote_blop.dart';
-import 'package:remote_data/remote_model.dart';
+import 'package:remote_data/persistent_blop/store/persistent_blop_store.dart';
+import 'package:remote_data/remote_data.dart';
+
+import 'store/hive_blop_store.dart';
 
 part 'persistent_blop.g.dart';
 
-typedef _DefaultFn<T> = FutureOr<T> Function();
-
-abstract class PersistentStore<T> {
-  Future<void> init(_DefaultFn<T> defaultValue, String valueName);
-
-  Future<T> load();
-
-  Future<T> save(T newValue);
-}
-
-class HiveStore<T> extends PersistentStore<T> {
-  late final Box<T> box;
-  late _DefaultFn<T> defaultValue;
-
-  @override
-  Future<void> init(_DefaultFn<T> defaultValue, String valueName) async {
-    this.defaultValue = defaultValue;
-    box = await Hive.openBox<T>(valueName);
-  }
-
-  @override
-  Future<T> load() async {
-    if (box.isNotEmpty) {
-      return box.getAt(0) as T;
-    } else {
-      final def = await defaultValue();
-      await box.putAt(0, def);
-      return def;
-    }
-  }
-
-  @override
-  Future<T> save(T newValue) async {
-    await box.putAt(0, newValue);
-    return newValue;
-  }
-}
-
 @blopProcessor
 class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
-  final PersistentStore<T> _store;
+  final PersistentBlopStore<T> _store;
   late final Cubit<FutureOr<T> Function()> _reloadCubit;
-  final _DefaultFn<T> _defaultValue;
+  final FutureOr<T> Function() _defaultValue;
   late final String _valueName;
 
   static dynamic _lrc;
@@ -62,9 +25,9 @@ class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
 
   PersistentBlop(
     this._defaultValue, {
-    PersistentStore<T>? store,
+    PersistentBlopStore<T>? store,
     String? valueName,
-  })  : _store = store ?? HiveStore<T>(),
+  })  : _store = store ?? HiveBlopStore<T>(),
         super(
           _lrc = Cubits.fromValue<FutureOr<T> Function()>(
             () => null as dynamic,

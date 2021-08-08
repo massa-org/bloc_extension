@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:remote_data/persistent_blop/persistent_blop.dart';
+import 'package:remote_data/persistent_blop/store/persistent_blop_store.dart';
 import 'package:remote_data/remote_data.dart';
 
 typedef _DefaultFn<T> = FutureOr<T> Function();
 
-class MockStore<T> extends PersistentStore<T> {
+class MockStore<T> extends PersistentBlopStore<T> {
   bool hasValue = false;
   bool isInit = false;
   late T val;

@@ -50,7 +50,7 @@ packages:
     description:
       path: blop
       ref: HEAD
-      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
+      resolved-ref: b1dc65d77b5f4c489d0be83ed925e63216252916
       url: "git@github.com:massa-org/bloc_extension.git"
     source: git
     version: "0.0.1"

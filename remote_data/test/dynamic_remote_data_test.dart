@@ -6,7 +6,7 @@ import 'package:bloc_utils/value_cubit.dart';
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:remote_data/remote_blop.dart';
-import 'package:remote_data/remote_model.dart';
+import 'package:remote_data/remote_data.dart';
 
 final dataCubit = () => ValueCubit(() => 'loaded');
 
