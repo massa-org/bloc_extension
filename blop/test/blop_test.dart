@@ -41,7 +41,7 @@ class TestBlop extends SimpleBlop<String> {
       () async* {
         yield value + '_some_random_shit';
 
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(milliseconds: 100));
 
         yield value;
       },
@@ -54,13 +54,19 @@ class TestBlop extends SimpleBlop<String> {
       () async* {
         yield value + '_some_random_shit';
 
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(milliseconds: 100));
 
         yield value + 'as';
         throw value;
       },
       'multipleValueThrow',
     );
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    if (error is MethodExecutionException) error.complete();
+    // super.onError(error, stackTrace);
   }
 }
 
@@ -76,7 +82,7 @@ class DebounceBlop extends SimpleBlop<String> {
       () async* {
         yield value + '_some_random_shit';
 
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(milliseconds: 200));
 
         yield value;
       },
@@ -89,7 +95,7 @@ class DebounceBlop extends SimpleBlop<String> {
       () async* {
         yield value + '_some_random_shit';
 
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(milliseconds: 200));
 
         yield value + 'as';
         throw value;
@@ -103,9 +109,15 @@ class DebounceBlop extends SimpleBlop<String> {
       Stream<BlopEvent<String>> events,
       TransitionFunction<BlopEvent<String>, String> transitionFn) {
     return super.transformEvents(
-      events.debounceTime(Duration(milliseconds: 200)),
+      events.debounceTime(Duration(milliseconds: 100)),
       transitionFn,
     );
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    if (error is MethodExecutionException) error.complete();
+    // super.onError(error, stackTrace);
   }
 }
 
