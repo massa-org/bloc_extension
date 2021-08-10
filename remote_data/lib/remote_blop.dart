@@ -19,7 +19,7 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
     this.loaderBloc, {
     bool reloadOnLoaderChange = true,
     bool reloadOnCreate = true,
-  }) : super(RemoteDataModel.inital()) {
+  }) : super(RemoteDataModel.initial()) {
     if (reloadOnLoaderChange) listenBlocs([loaderBloc], reload);
     if (reloadOnCreate) reload();
   }
@@ -28,7 +28,7 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
     FutureOr<T> Function() loader, {
     bool reloadOnCreate = true,
   })  : loaderBloc = Cubits.fromValue(loader),
-        super(RemoteDataModel.inital()) {
+        super(RemoteDataModel.initial()) {
     if (reloadOnCreate) reload();
   }
 

@@ -28,7 +28,7 @@ class SRemote extends RemoteDataBlop<String> {
 void main() {
   test('correct state switch', () async {
     final v = SRemote();
-    expect(v.state, RemoteDataModel.inital());
+    expect(v.state, RemoteDataModel.initial());
     // ignore: unawaited_futures
     v.reload();
 
@@ -42,14 +42,14 @@ void main() {
 
   test('loading future return value', () async {
     final v = SRemote();
-    expect(v.state, RemoteDataModel.inital());
+    expect(v.state, RemoteDataModel.initial());
 
     expect(await v.reload(), RemoteDataModel.data('loaded'));
   });
 
   test('correct error behavior', () async {
     final v = SRemote(() => throw 'error');
-    expect(v.state, RemoteDataModel.inital());
+    expect(v.state, RemoteDataModel.initial());
     expect(v.reload(), throwsA('error'));
     expect(await v.stream.first, RemoteDataModel.loading());
     expect(await v.stream.first, RemoteDataModel.error('error'));
