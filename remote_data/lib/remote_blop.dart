@@ -32,6 +32,12 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
     if (reloadOnCreate) reload();
   }
 
+  /// return state if it loaded or await first data | error event and return
+  Future<RemoteDataModel<T>> get loadingFuture async {
+    if (state.isLoaded) return state;
+    return stream.firstWhere((e) => state.isLoaded);
+  }
+
   @override
   Future<void> close() async {
     await closeManager();
