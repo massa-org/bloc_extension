@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RemoteDataProgress extends StatelessWidget {
-  const RemoteDataProgress({
+class DefaultRemoteValueProgress extends StatelessWidget {
+  const DefaultRemoteValueProgress({
     Key? key,
   }) : super(key: key);
 

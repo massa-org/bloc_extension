@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:remote_data_flutter/remote_data_theme.dart';
 
-class RemoteDataErrorWidget extends StatelessWidget {
+import 'remote_value_theme.dart';
+
+class DefaultRemoteValueErrorWidget extends StatelessWidget {
   final void Function() onReload;
 
-  const RemoteDataErrorWidget({Key? key, required this.onReload})
+  const DefaultRemoteValueErrorWidget({Key? key, required this.onReload})
       : super(key: key);
 
   @override

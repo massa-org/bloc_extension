@@ -4,10 +4,9 @@ import 'dart:async';
 
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remote_data/remote_blop.dart';
-import 'package:remote_data/remote_data.dart';
+import 'package:remote_value/remote_value.dart';
 
-class SRemote extends RemoteDataBlop<String> {
+class SRemote extends RemoteValueBlop<String> {
   SRemote([FutureOr<String> Function()? load])
       : super.staticLoader(
           () => Future.delayed(
@@ -18,6 +17,7 @@ class SRemote extends RemoteDataBlop<String> {
         );
 
   @override
+  // ignore: must_call_super
   void onError(Object error, StackTrace stackTrace) {
     if (error is MethodExecutionException) {
       error.complete();
@@ -28,30 +28,30 @@ class SRemote extends RemoteDataBlop<String> {
 void main() {
   test('correct state switch', () async {
     final v = SRemote();
-    expect(v.state, RemoteDataModel.initial());
+    expect(v.state, RemoteValue.initial());
     // ignore: unawaited_futures
     v.reload();
 
-    expect(await v.stream.first, RemoteDataModel.loading());
-    expect(await v.stream.first, RemoteDataModel.data('loaded'));
+    expect(await v.stream.first, RemoteValue.loading());
+    expect(await v.stream.first, RemoteValue.data('loaded'));
     // ignore: unawaited_futures
     v.reload();
-    expect(await v.stream.first, RemoteDataModel.loading());
-    expect(await v.stream.first, RemoteDataModel.data('loaded'));
+    expect(await v.stream.first, RemoteValue.loading());
+    expect(await v.stream.first, RemoteValue.data('loaded'));
   });
 
   test('loading future return value', () async {
     final v = SRemote();
-    expect(v.state, RemoteDataModel.initial());
+    expect(v.state, RemoteValue.initial());
 
-    expect(await v.reload(), RemoteDataModel.data('loaded'));
+    expect(await v.reload(), RemoteValue.data('loaded'));
   });
 
   test('correct error behavior', () async {
     final v = SRemote(() => throw 'error');
-    expect(v.state, RemoteDataModel.initial());
+    expect(v.state, RemoteValue.initial());
     expect(v.reload(), throwsA('error'));
-    expect(await v.stream.first, RemoteDataModel.loading());
-    expect(await v.stream.first, RemoteDataModel.error('error'));
+    expect(await v.stream.first, RemoteValue.loading());
+    expect(await v.stream.first, RemoteValue.error('error'));
   });
 }

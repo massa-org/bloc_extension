@@ -64,6 +64,7 @@ class TestBlop extends SimpleBlop<String> {
   }
 
   @override
+  // ignore: must_call_super
   void onError(Object error, StackTrace stackTrace) {
     if (error is MethodExecutionException) error.complete();
     // super.onError(error, stackTrace);
@@ -106,8 +107,9 @@ class DebounceBlop extends SimpleBlop<String> {
 
   @override
   Stream<Transition<BlopEvent<String>, String>> transformEvents(
-      Stream<BlopEvent<String>> events,
-      TransitionFunction<BlopEvent<String>, String> transitionFn) {
+    Stream<BlopEvent<String>> events,
+    TransitionFunction<BlopEvent<String>, String> transitionFn,
+  ) {
     return super.transformEvents(
       events.debounceTime(Duration(milliseconds: 100)),
       transitionFn,
@@ -115,6 +117,7 @@ class DebounceBlop extends SimpleBlop<String> {
   }
 
   @override
+  // ignore: must_call_super
   void onError(Object error, StackTrace stackTrace) {
     if (error is MethodExecutionException) error.complete();
     // super.onError(error, stackTrace);

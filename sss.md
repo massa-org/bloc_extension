@@ -20,6 +20,11 @@ Shop? _userSelectedShop(
     ShopsCubit shops,
     LocationCubit location,
 ){
+    // vscode action after function defination
+    final shops = shops.state;
+    final location = location.state;
+    final id = id.state;
+
     if(
         state == null //user does't select shop
         && id.state.isData // and data from persistent storage loaded
@@ -47,8 +52,10 @@ class UserSelectedShop extends Cubit<Shop?>{
         ShopsCubit shops,
         LocationCubit location,
     ):super(null){
-        listenBlocs([id,shops,location],rebuild);
+        listenBlocs([id,shops,location],rebuild); // listen to rebuild
     }
+
+    UserSelectedShop.of(BuildContext context); // auto init dependencies from context
 
     rebuild(){
         emit(
@@ -65,3 +72,8 @@ class UserSelectedShop extends Cubit<Shop?>{
 - [ ] remote data streaming 
     - [ ] rewrited sliver_stream_builder
     - [ ] http pagination to stream
+        - [ ] x-next pagination
+        - [ ] offset pagination
+        - [ ] page pagination
+        - [ ] result exractor
+        - [ ] bitrix pagination (start)

@@ -1,4 +1,4 @@
-name: remote_data_flutter
+name: flutter_remote_value
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -14,15 +14,19 @@ dependencies:
 
   flutter_bloc: ^7.1.0
   freezed_annotation: ^0.14.2
-  remote_data:
+  remote_value:
     git: 
       url: git@github.com:massa-org/bloc_extension.git
-      path: remote_data
+      path: remote_value
 dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^0.14.2
   build_runner: ^2.0.3
+
+dependency_overrides:
+  remote_value:
+    path: ../remote_value
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

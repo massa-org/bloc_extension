@@ -13,10 +13,10 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$RemoteDataModelTearOff {
-  const _$RemoteDataModelTearOff();
+class _$RemoteValueTearOff {
+  const _$RemoteValueTearOff();
 
-  _Initial<T> inital<T>() {
+  _Initial<T> initial<T>() {
     return _Initial<T>();
   }
 
@@ -38,13 +38,13 @@ class _$RemoteDataModelTearOff {
 }
 
 /// @nodoc
-const $RemoteDataModel = _$RemoteDataModelTearOff();
+const $RemoteValue = _$RemoteValueTearOff();
 
 /// @nodoc
-mixin _$RemoteDataModel<T> {
+mixin _$RemoteValue<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inital,
+    required TResult Function() initial,
     required TResult Function(T value) data,
     required TResult Function() loading,
     required TResult Function(dynamic error) error,
@@ -52,7 +52,7 @@ mixin _$RemoteDataModel<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inital,
+    TResult Function()? initial,
     TResult Function(T value)? data,
     TResult Function()? loading,
     TResult Function(dynamic error)? error,
@@ -61,7 +61,7 @@ mixin _$RemoteDataModel<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial<T> value) inital,
+    required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Data<T> value) data,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Error<T> value) error,
@@ -69,7 +69,7 @@ mixin _$RemoteDataModel<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial<T> value)? inital,
+    TResult Function(_Initial<T> value)? initial,
     TResult Function(_Data<T> value)? data,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Error<T> value)? error,
@@ -79,20 +79,20 @@ mixin _$RemoteDataModel<T> {
 }
 
 /// @nodoc
-abstract class $RemoteDataModelCopyWith<T, $Res> {
-  factory $RemoteDataModelCopyWith(
-          RemoteDataModel<T> value, $Res Function(RemoteDataModel<T>) then) =
-      _$RemoteDataModelCopyWithImpl<T, $Res>;
+abstract class $RemoteValueCopyWith<T, $Res> {
+  factory $RemoteValueCopyWith(
+          RemoteValue<T> value, $Res Function(RemoteValue<T>) then) =
+      _$RemoteValueCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$RemoteDataModelCopyWithImpl<T, $Res>
-    implements $RemoteDataModelCopyWith<T, $Res> {
-  _$RemoteDataModelCopyWithImpl(this._value, this._then);
+class _$RemoteValueCopyWithImpl<T, $Res>
+    implements $RemoteValueCopyWith<T, $Res> {
+  _$RemoteValueCopyWithImpl(this._value, this._then);
 
-  final RemoteDataModel<T> _value;
+  final RemoteValue<T> _value;
   // ignore: unused_field
-  final $Res Function(RemoteDataModel<T>) _then;
+  final $Res Function(RemoteValue<T>) _then;
 }
 
 /// @nodoc
@@ -103,8 +103,7 @@ abstract class _$InitialCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<T, $Res>
-    extends _$RemoteDataModelCopyWithImpl<T, $Res>
+class __$InitialCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
     implements _$InitialCopyWith<T, $Res> {
   __$InitialCopyWithImpl(_Initial<T> _value, $Res Function(_Initial<T>) _then)
       : super(_value, (v) => _then(v as _Initial<T>));
@@ -120,7 +119,7 @@ class _$_Initial<T> extends _Initial<T> {
 
   @override
   String toString() {
-    return 'RemoteDataModel<$T>.inital()';
+    return 'RemoteValue<$T>.initial()';
   }
 
   @override
@@ -134,25 +133,25 @@ class _$_Initial<T> extends _Initial<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inital,
+    required TResult Function() initial,
     required TResult Function(T value) data,
     required TResult Function() loading,
     required TResult Function(dynamic error) error,
   }) {
-    return inital();
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inital,
+    TResult Function()? initial,
     TResult Function(T value)? data,
     TResult Function()? loading,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
   }) {
-    if (inital != null) {
-      return inital();
+    if (initial != null) {
+      return initial();
     }
     return orElse();
   }
@@ -160,31 +159,31 @@ class _$_Initial<T> extends _Initial<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial<T> value) inital,
+    required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Data<T> value) data,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Error<T> value) error,
   }) {
-    return inital(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial<T> value)? inital,
+    TResult Function(_Initial<T> value)? initial,
     TResult Function(_Data<T> value)? data,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Error<T> value)? error,
     required TResult orElse(),
   }) {
-    if (inital != null) {
-      return inital(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial<T> extends RemoteDataModel<T> {
+abstract class _Initial<T> extends RemoteValue<T> {
   const factory _Initial() = _$_Initial<T>;
   const _Initial._() : super._();
 }
@@ -197,8 +196,7 @@ abstract class _$DataCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<T, $Res>
-    extends _$RemoteDataModelCopyWithImpl<T, $Res>
+class __$DataCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
     implements _$DataCopyWith<T, $Res> {
   __$DataCopyWithImpl(_Data<T> _value, $Res Function(_Data<T>) _then)
       : super(_value, (v) => _then(v as _Data<T>));
@@ -229,7 +227,7 @@ class _$_Data<T> extends _Data<T> {
 
   @override
   String toString() {
-    return 'RemoteDataModel<$T>.data(value: $value)';
+    return 'RemoteValue<$T>.data(value: $value)';
   }
 
   @override
@@ -252,7 +250,7 @@ class _$_Data<T> extends _Data<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inital,
+    required TResult Function() initial,
     required TResult Function(T value) data,
     required TResult Function() loading,
     required TResult Function(dynamic error) error,
@@ -263,7 +261,7 @@ class _$_Data<T> extends _Data<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inital,
+    TResult Function()? initial,
     TResult Function(T value)? data,
     TResult Function()? loading,
     TResult Function(dynamic error)? error,
@@ -278,7 +276,7 @@ class _$_Data<T> extends _Data<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial<T> value) inital,
+    required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Data<T> value) data,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Error<T> value) error,
@@ -289,7 +287,7 @@ class _$_Data<T> extends _Data<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial<T> value)? inital,
+    TResult Function(_Initial<T> value)? initial,
     TResult Function(_Data<T> value)? data,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Error<T> value)? error,
@@ -302,7 +300,7 @@ class _$_Data<T> extends _Data<T> {
   }
 }
 
-abstract class _Data<T> extends RemoteDataModel<T> {
+abstract class _Data<T> extends RemoteValue<T> {
   const factory _Data(T value) = _$_Data<T>;
   const _Data._() : super._();
 
@@ -320,8 +318,7 @@ abstract class _$LoadingCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<T, $Res>
-    extends _$RemoteDataModelCopyWithImpl<T, $Res>
+class __$LoadingCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
     implements _$LoadingCopyWith<T, $Res> {
   __$LoadingCopyWithImpl(_Loading<T> _value, $Res Function(_Loading<T>) _then)
       : super(_value, (v) => _then(v as _Loading<T>));
@@ -337,7 +334,7 @@ class _$_Loading<T> extends _Loading<T> {
 
   @override
   String toString() {
-    return 'RemoteDataModel<$T>.loading()';
+    return 'RemoteValue<$T>.loading()';
   }
 
   @override
@@ -351,7 +348,7 @@ class _$_Loading<T> extends _Loading<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inital,
+    required TResult Function() initial,
     required TResult Function(T value) data,
     required TResult Function() loading,
     required TResult Function(dynamic error) error,
@@ -362,7 +359,7 @@ class _$_Loading<T> extends _Loading<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inital,
+    TResult Function()? initial,
     TResult Function(T value)? data,
     TResult Function()? loading,
     TResult Function(dynamic error)? error,
@@ -377,7 +374,7 @@ class _$_Loading<T> extends _Loading<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial<T> value) inital,
+    required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Data<T> value) data,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Error<T> value) error,
@@ -388,7 +385,7 @@ class _$_Loading<T> extends _Loading<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial<T> value)? inital,
+    TResult Function(_Initial<T> value)? initial,
     TResult Function(_Data<T> value)? data,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Error<T> value)? error,
@@ -401,7 +398,7 @@ class _$_Loading<T> extends _Loading<T> {
   }
 }
 
-abstract class _Loading<T> extends RemoteDataModel<T> {
+abstract class _Loading<T> extends RemoteValue<T> {
   const factory _Loading() = _$_Loading<T>;
   const _Loading._() : super._();
 }
@@ -414,8 +411,7 @@ abstract class _$ErrorCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<T, $Res>
-    extends _$RemoteDataModelCopyWithImpl<T, $Res>
+class __$ErrorCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
     implements _$ErrorCopyWith<T, $Res> {
   __$ErrorCopyWithImpl(_Error<T> _value, $Res Function(_Error<T>) _then)
       : super(_value, (v) => _then(v as _Error<T>));
@@ -446,7 +442,7 @@ class _$_Error<T> extends _Error<T> {
 
   @override
   String toString() {
-    return 'RemoteDataModel<$T>.error(error: $error)';
+    return 'RemoteValue<$T>.error(error: $error)';
   }
 
   @override
@@ -469,7 +465,7 @@ class _$_Error<T> extends _Error<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() inital,
+    required TResult Function() initial,
     required TResult Function(T value) data,
     required TResult Function() loading,
     required TResult Function(dynamic error) error,
@@ -480,7 +476,7 @@ class _$_Error<T> extends _Error<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? inital,
+    TResult Function()? initial,
     TResult Function(T value)? data,
     TResult Function()? loading,
     TResult Function(dynamic error)? error,
@@ -495,7 +491,7 @@ class _$_Error<T> extends _Error<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial<T> value) inital,
+    required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Data<T> value) data,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Error<T> value) error,
@@ -506,7 +502,7 @@ class _$_Error<T> extends _Error<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial<T> value)? inital,
+    TResult Function(_Initial<T> value)? initial,
     TResult Function(_Data<T> value)? data,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Error<T> value)? error,
@@ -519,7 +515,7 @@ class _$_Error<T> extends _Error<T> {
   }
 }
 
-abstract class _Error<T> extends RemoteDataModel<T> {
+abstract class _Error<T> extends RemoteValue<T> {
   const factory _Error(dynamic error) = _$_Error<T>;
   const _Error._() : super._();
 

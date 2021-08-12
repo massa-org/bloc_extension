@@ -30,14 +30,14 @@ packages:
     source: hosted
     version: "2.6.1"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.0"
   bloc_utils:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: bloc_utils
       ref: HEAD
@@ -46,9 +46,18 @@ packages:
     source: git
     version: "0.0.1"
   blop:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: blop
+      ref: HEAD
+      resolved-ref: b1dc65d77b5f4c489d0be83ed925e63216252916
+      url: "git@github.com:massa-org/bloc_extension.git"
+    source: git
+    version: "0.0.1"
+  blop_generator:
+    dependency: "direct dev"
+    description:
+      path: blop_generator
       ref: HEAD
       resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
       url: "git@github.com:massa-org/bloc_extension.git"
@@ -213,13 +222,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_bloc:
-    dependency: "direct main"
-    description:
-      name: flutter_bloc
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -261,7 +263,7 @@ packages:
     source: hosted
     version: "2.0.0"
   hive:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: hive
       url: "https://pub.dartlang.org"
@@ -330,13 +332,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   package_config:
     dependency: transitive
     description:
@@ -352,7 +347,7 @@ packages:
     source: hosted
     version: "1.8.0"
   pedantic:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
@@ -365,13 +360,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.0"
   pub_semver:
     dependency: transitive
     description:
@@ -386,15 +374,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  remote_data:
-    dependency: "direct main"
-    description:
-      path: remote_data
-      ref: HEAD
-      resolved-ref: "94cf0f31eb0c0e0ebed1cd1bf0a8f1c4c0c0ccd8"
-      url: "git@github.com:massa-org/bloc_extension.git"
-    source: git
-    version: "0.0.1"
   shelf:
     dependency: transitive
     description:

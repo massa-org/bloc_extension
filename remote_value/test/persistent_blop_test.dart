@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remote_data/persistent_blop/persistent_blop.dart';
-import 'package:remote_data/persistent_blop/store/persistent_blop_store.dart';
-import 'package:remote_data/remote_data.dart';
+import 'package:remote_value/persistent_blop/persistent_blop.dart';
+import 'package:remote_value/persistent_blop/store/persistent_blop_store.dart';
+import 'package:remote_value/remote_value.dart';
 
 typedef _DefaultFn<T> = FutureOr<T> Function();
 
@@ -38,7 +38,7 @@ class MockStore<T> extends PersistentBlopStore<T> {
   }
 }
 
-class PBTest extends PersistentBlop<String> {
+class PBTest extends PersistentValueBlop<String> {
   PBTest({String Function()? defaultValue})
       : super(
           () => Future.delayed(
@@ -62,20 +62,20 @@ void main() async {
   test('check correct initialization', () async {
     final pb = PBTest();
 
-    expect(pb.state, RemoteDataModel.initial());
-    expect(await pb.reload(), RemoteDataModel.data('initial default value'));
+    expect(pb.state, RemoteValue.initial());
+    expect(await pb.reload(), RemoteValue.data('initial default value'));
   });
 
   test('catch error from initialization', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteDataModel.initial());
+    expect(pb.state, RemoteValue.initial());
 
     expect(pb.reload(), throwsA('err'));
   });
 
   test('catch error from initialization multiple times', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteDataModel.initial());
+    expect(pb.state, RemoteValue.initial());
 
     expect(pb.reload(), throwsA('err'));
     expect(pb.reload(), throwsA('err'));
@@ -83,49 +83,49 @@ void main() async {
 
   test('error from initialization appear in state', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteDataModel.initial());
+    expect(pb.state, RemoteValue.initial());
 
     await pb.reload().onError((error, stackTrace) => pb.state);
 
-    expect(pb.state, RemoteDataModel.error('err'));
+    expect(pb.state, RemoteValue.error('err'));
   });
 
   test('check correct value update', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteDataModel.initial());
-    expect(await pb.reload(), RemoteDataModel.data('initial default value'));
+    expect(pb.state, RemoteValue.initial());
+    expect(await pb.reload(), RemoteValue.data('initial default value'));
 
     expect(
       await pb.update((_) => 'new_value'),
-      RemoteDataModel.data('new_value'),
+      RemoteValue.data('new_value'),
     );
   });
 
   test('update work correct without init', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteDataModel.initial());
+    expect(pb.state, RemoteValue.initial());
 
     expect(
       await pb.update((_) => 'new_value'),
-      RemoteDataModel.data('new_value'),
+      RemoteValue.data('new_value'),
     );
   });
   test('update catch error from init', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteDataModel.initial());
+    expect(pb.state, RemoteValue.initial());
 
     expect(
       pb.update((_) => 'new_value'),
       throwsA('err'),
     );
     await pb.stream.first;
-    expect(pb.state, RemoteDataModel.error('err'));
+    expect(pb.state, RemoteValue.error('err'));
   });
 
   test('catch error from update', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteDataModel.initial());
-    expect(await pb.reload(), RemoteDataModel.data('initial default value'));
+    expect(pb.state, RemoteValue.initial());
+    expect(await pb.reload(), RemoteValue.data('initial default value'));
 
     expect(
       pb.update((_) => throw 'error'),
@@ -135,15 +135,15 @@ void main() async {
 
   test('error from update appear in state', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteDataModel.initial());
-    expect(await pb.reload(), RemoteDataModel.data('initial default value'));
+    expect(pb.state, RemoteValue.initial());
+    expect(await pb.reload(), RemoteValue.data('initial default value'));
     await pb
         .update((_) => throw 'error')
         .onError((error, stackTrace) => pb.state);
 
     expect(
       pb.state,
-      RemoteDataModel.error('error'),
+      RemoteValue.error('error'),
     );
   });
 }

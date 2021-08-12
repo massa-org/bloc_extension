@@ -6,15 +6,14 @@ part of 'remote_blop.dart';
 // BlopGenerator
 // **************************************************************************
 
-abstract class _BlopInterfaceRemoteDataBlop<T> {
-  Stream<RemoteDataModel<T>> _reload();
+abstract class _BlopInterfaceRemoteValueBlop<T> {
+  Stream<RemoteValue<T>> _reload();
 }
 
-mixin _$RemoteDataBlop<T>
-    on Blop<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>
-    implements _BlopInterfaceRemoteDataBlop<T> {
+mixin _$RemoteValueBlop<T> on Blop<BlopEvent<RemoteValue<T>>, RemoteValue<T>>
+    implements _BlopInterfaceRemoteValueBlop<T> {
 // annotated element: _reload generator: Stream<stateType>
-  Future<RemoteDataModel<T>> reload() async {
+  Future<RemoteValue<T>> reload() async {
     return executeMethod(
       () => _reload(),
       '_reload',

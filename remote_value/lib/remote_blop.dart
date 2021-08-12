@@ -5,35 +5,34 @@ import 'package:bloc_utils/bloc_utils.dart';
 import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
 import 'package:blop/blop_event.dart';
-
-import 'remote_data_model/remote_model.dart';
+import 'package:remote_value/remote_value.dart';
 
 part 'remote_blop.g.dart';
 
 @blopProcessor
-abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
-    with BlocSubscriptionManager, _$RemoteDataBlop<T> {
+abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
+    with BlocSubscriptionManager, _$RemoteValueBlop<T> {
   final Cubit<FutureOr<T> Function()> loaderBloc;
 
-  RemoteDataBlop(
+  RemoteValueBlop(
     this.loaderBloc, {
     bool reloadOnLoaderChange = true,
     bool reloadOnCreate = true,
-  }) : super(RemoteDataModel.initial()) {
+  }) : super(RemoteValue.initial()) {
     if (reloadOnLoaderChange) listenBlocs([loaderBloc], reload);
     if (reloadOnCreate) reload();
   }
 
-  RemoteDataBlop.staticLoader(
+  RemoteValueBlop.staticLoader(
     FutureOr<T> Function() loader, {
     bool reloadOnCreate = true,
   })  : loaderBloc = Cubits.fromValue(loader),
-        super(RemoteDataModel.initial()) {
+        super(RemoteValue.initial()) {
     if (reloadOnCreate) reload();
   }
 
   /// return state if it loaded or await first data | error event and return
-  Future<RemoteDataModel<T>> get loadingFuture async {
+  Future<RemoteValue<T>> get loadingFuture async {
     if (state.isLoaded) return state;
     return stream.firstWhere((e) => state.isLoaded);
   }
@@ -46,16 +45,16 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
 
   @override
   @blopProcess
-  Stream<RemoteDataModel<T>> _reload() async* {
-    yield RemoteDataModel.loading();
+  Stream<RemoteValue<T>> _reload() async* {
+    yield RemoteValue.loading();
 
-    yield RemoteDataModel.data(await loaderBloc.state());
+    yield RemoteValue.data(await loaderBloc.state());
   }
 
   // supress all errors and convert it to RemoteDataModel.error
   @override
-  Stream<RemoteDataModel<T>> mapEventToState(
-    BlopEvent<RemoteDataModel<T>> event,
+  Stream<RemoteValue<T>> mapEventToState(
+    BlopEvent<RemoteValue<T>> event,
   ) async* {
     try {
       final str = super.mapEventToState(event);
@@ -63,10 +62,10 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
         yield state;
       }
     } on MethodExecutionException catch (error) {
-      yield RemoteDataModel.error(error.error);
+      yield RemoteValue.error(error.error);
       rethrow;
     } catch (error) {
-      yield RemoteDataModel.error(error);
+      yield RemoteValue.error(error);
       rethrow;
     }
   }

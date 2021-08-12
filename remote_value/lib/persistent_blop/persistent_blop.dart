@@ -4,15 +4,16 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_utils/value_cubit.dart';
 import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
-import 'package:remote_data/persistent_blop/store/persistent_blop_store.dart';
-import 'package:remote_data/remote_data.dart';
+import 'package:remote_value/persistent_blop/store/persistent_blop_store.dart';
+import 'package:remote_value/remote_value.dart';
 
 import 'store/hive_blop_store.dart';
 
 part 'persistent_blop.g.dart';
 
 @blopProcessor
-class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
+class PersistentValueBlop<T> extends RemoteValueBlop<T>
+    with _$PersistentValueBlop<T> {
   final PersistentBlopStore<T> _store;
   late final Cubit<FutureOr<T> Function()> _reloadCubit;
   final FutureOr<T> Function() _defaultValue;
@@ -23,7 +24,7 @@ class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
   var _currentReload;
   var _currentUpdate;
 
-  PersistentBlop(
+  PersistentValueBlop(
     this._defaultValue, {
     PersistentBlopStore<T>? store,
     String? valueName,
@@ -45,7 +46,7 @@ class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
     _currentUpdate = _updateWithInit;
   }
 
-  Future<RemoteDataModel<T>> _reloadWithInit() async {
+  Future<RemoteValue<T>> _reloadWithInit() async {
     await _store.init(_defaultValue, _valueName);
     _currentUpdate = _update;
     _currentReload = super.reload;
@@ -54,34 +55,34 @@ class PersistentBlop<T> extends RemoteDataBlop<T> with _$PersistentBlop<T> {
   }
 
   @override
-  Future<RemoteDataModel<T>> reload() async {
+  Future<RemoteValue<T>> reload() async {
     return _currentReload();
   }
 
   @override
   @blopProcess
-  Stream<RemoteDataModel<T>> __updateWithInit(
+  Stream<RemoteValue<T>> __updateWithInit(
     T Function(T v) updateFn,
   ) async* {
     await _store.init(_defaultValue, _valueName);
     final data = await _store.load();
-    yield RemoteDataModel.data(data);
+    yield RemoteValue.data(data);
     await stream.first;
     yield (await __update(updateFn));
     _currentUpdate = _update;
     _currentReload = super.reload;
   }
 
-  Future<RemoteDataModel<T>> update(T Function(T v) updateFn) {
+  Future<RemoteValue<T>> update(T Function(T v) updateFn) {
     return _currentUpdate(updateFn);
   }
 
   @override
   @blopProcess
-  FutureOr<RemoteDataModel<T>> __update(T Function(T v) updateFn) async {
+  FutureOr<RemoteValue<T>> __update(T Function(T v) updateFn) async {
     return state.maybeWhen(
       data: (v) async {
-        return RemoteDataModel.data(await _store.save(updateFn(v)));
+        return RemoteValue.data(await _store.save(updateFn(v)));
       },
       orElse: () => state,
     );

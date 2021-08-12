@@ -1,4 +1,4 @@
-name: remote_data
+name: remote_value
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
@@ -24,6 +24,8 @@ dependencies:
 
   # for persistent store
   hive: ^2.0.0
+  freezed_annotation: ^0.14.2
+  
   # hive_flutter: ^1.0.0
 
 dev_dependencies:
@@ -35,5 +37,7 @@ dev_dependencies:
     git: 
       url: git@github.com:massa-org/bloc_extension.git
       path: blop_generator
+  freezed: ^0.14.2
+  
   
   build_runner: ^2.0.0

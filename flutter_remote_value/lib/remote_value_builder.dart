@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:remote_data/remote_blop.dart';
-import 'package:remote_data_flutter/remote_data_theme.dart';
+// import 'package:remote_data/remote_blop.dart';
+import 'package:remote_value/remote_value.dart';
 
-class RemoteDataBuilder<T extends RemoteDataBlop<E>, E>
+import 'remote_value_theme.dart';
+
+class RemoteValueBuilder<T extends RemoteValueBlop<E>, E>
     extends StatelessWidget {
-  RemoteDataBuilder({Key? key, required this.builder, this.isSliver = false})
+  RemoteValueBuilder({Key? key, required this.builder, this.isSliver = false})
       : super(key: key);
 
   final bool isSliver;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:remote_data_flutter/remote_data_error.dart';
-import 'package:remote_data_flutter/remote_data_progress.dart';
+
+import 'remote_value_error.dart';
+import 'remote_value_progress.dart';
 
 Widget _wrap(bool isSliver, Widget child) {
   if (isSliver) return SliverToBoxAdapter(child: child);
@@ -12,7 +13,7 @@ Widget _defaultLoadingBuilder(
   bool inSliver,
   BuildContext context,
 ) =>
-    _wrap(inSliver, RemoteDataProgress());
+    _wrap(inSliver, DefaultRemoteValueProgress());
 
 Widget _defaultErrorBuilder(
   bool inSliver,
@@ -20,9 +21,8 @@ Widget _defaultErrorBuilder(
   void Function() cb,
   dynamic err,
 ) =>
-    _wrap(inSliver, RemoteDataErrorWidget(onReload: cb));
+    _wrap(inSliver, DefaultRemoteValueErrorWidget(onReload: cb));
 
-// ignore: unused_element
 Widget _emptyBuilder(bool inSliver, [_1, _2, _3]) =>
     _wrap(inSliver, SizedBox.shrink());
 
