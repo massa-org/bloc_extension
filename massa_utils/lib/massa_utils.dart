@@ -1,4 +1,4 @@
-library bloc_utils;
+library massa_utils;
 
 export './subscription_manager.dart'
     show StreamSubscriptionManager, BlocSubscriptionManager;

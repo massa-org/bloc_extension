@@ -36,10 +36,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.0"
-  bloc_utils:
+  massa_utils:
     dependency: "direct main"
     description:
-      path: bloc_utils
+      path: massa_utils
       ref: HEAD
       resolved-ref: "1ef6f7e0614d39a61579280a87f8045480cef758"
       url: "git@github.com:massa-org/bloc_extension.git"

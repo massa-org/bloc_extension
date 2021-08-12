@@ -26,8 +26,8 @@ e. = explanation
 - [-] extract persistent_store to package
 - [-] extract blop to other repo???
 
-- rename bloc_utils -> massa_utils
-- [-] extract bloc_utils to other repo???
+- rename massa_utils -> massa_utils
+- [-] extract massa_utils to other repo???
 
 - rename repository bloc_extension -> massa.flutter.packages
 - fast_i18n fork with adaptation to package localization

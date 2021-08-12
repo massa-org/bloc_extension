@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:bloc_utils/value_cubit.dart';
+import 'package:massa_utils/value_cubit.dart';
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:remote_value/remote_value.dart';

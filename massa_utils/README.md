@@ -1,4 +1,4 @@
-# bloc_utils
+# massa_utils
 
 A new Flutter package project.
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_utils/bloc_utils.dart';
+import 'package:massa_utils/massa_utils.dart';
 import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
 import 'package:blop/blop_event.dart';
