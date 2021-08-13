@@ -18,9 +18,9 @@ dependencies:
       url: git@github.com:massa-org/bloc_extension.git
       path: blop
   massa_utils:
-    git: 
-      url: git@github.com:massa-org/bloc_extension.git
-      path: massa_utils
+    path: ../massa_utils
+    # git: 
+      # url: git@github.com:massa-org/bloc_extension.git
 
   # for persistent store
   hive: ^2.0.0
