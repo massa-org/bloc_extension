@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
+/// Listen stream and call update on event
+/// on dispose or close must call closeManager
 mixin StreamSubscriptionManager {
-  List<StreamSubscription> _sub = [];
+  final List<StreamSubscription> _sub = [];
 
-  void listenStreams(Iterable<Stream> cubits, void Function() update) {
-    _sub = cubits.map((e) => e.listen((_) => update())).toList();
+  void listenStreams(Iterable<Stream> streams, void Function() update) {
+    _sub.addAll(streams.map((e) => e.listen((_) => update())));
   }
 
   Future<void> closeManager() async {
@@ -14,11 +16,13 @@ mixin StreamSubscriptionManager {
   }
 }
 
+/// Listen stream or bloc and call update on event
+/// on dispose or close must call closeManager
 mixin BlocSubscriptionManager {
-  List<StreamSubscription> _sub = [];
+  final List<StreamSubscription> _sub = [];
 
-  void listenStreams(Iterable<Stream> cubits, void Function() update) {
-    _sub = cubits.map((e) => e.listen((_) => update())).toList();
+  void listenStreams(Iterable<Stream> streams, void Function() update) {
+    _sub.addAll(streams.map((e) => e.listen((_) => update())));
   }
 
   void listenBlocs(Iterable<BlocBase> cubits, void Function() update) {
