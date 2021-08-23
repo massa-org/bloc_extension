@@ -21,7 +21,7 @@ dependencies:
 
   freezed_annotation: ^0.14.2
   massa_utils:
-    path: ../massa_utils
+    path: ../../massa_utils
     # git: 
     #   url: git@github.com:massa-org/bloc_extension.git
 

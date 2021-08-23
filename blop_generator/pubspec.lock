@@ -35,16 +35,16 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "7.1.0"
   blop:
     dependency: "direct main"
     description:
       path: blop
       ref: HEAD
-      resolved-ref: "7a91036b1dd49c3187051348664969b50a143b1b"
+      resolved-ref: "086cc4fff7334011923ea66338bb7041ce11a358"
       url: "git@github.com:massa-org/bloc_extension.git"
     source: git
-    version: "0.0.1"
+    version: "0.0.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -222,7 +222,7 @@ packages:
       name: frontend_server_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.2"
   glob:
     dependency: transitive
     description:

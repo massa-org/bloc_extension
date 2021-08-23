@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_utils/value_cubit.dart';
+import 'package:massa_utils/massa_utils.dart';
 import 'package:blop/annotations.dart';
 import 'package:blop/blop.dart';
 import 'package:remote_value/persistent_blop/store/persistent_blop_store.dart';
