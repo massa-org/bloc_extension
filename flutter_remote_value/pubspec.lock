@@ -39,11 +39,9 @@ packages:
   blop:
     dependency: transitive
     description:
-      path: blop
-      ref: HEAD
-      resolved-ref: "086cc4fff7334011923ea66338bb7041ce11a358"
-      url: "git@github.com:massa-org/bloc_extension.git"
-    source: git
+      name: blop
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.2"
   boolean_selector:
     dependency: transitive
@@ -303,9 +301,9 @@ packages:
   massa_utils:
     dependency: transitive
     description:
-      path: "../massa_utils"
-      relative: true
-    source: path
+      name: massa_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.2"
   matcher:
     dependency: transitive
@@ -387,9 +385,9 @@ packages:
   remote_value:
     dependency: "direct main"
     description:
-      path: "../remote_value"
-      relative: true
-    source: path
+      name: remote_value
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.2"
   shelf:
     dependency: transitive

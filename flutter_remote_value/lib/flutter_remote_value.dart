@@ -1,4 +1,4 @@
-export 'package:bloc/bloc.dart';
+export 'package:remote_value/remote_value.dart';
 
 export 'remote_value_builder.dart';
 export 'remote_value_error.dart';
