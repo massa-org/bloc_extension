@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rxdart/rxdart.dart';
+// import 'package:test/test.dart';
 
 class TestBlop extends SimpleBlop<String> {
   TestBlop() : super('');
@@ -129,6 +130,7 @@ void main() {
     final testBlop = TestBlop();
     expect(await testBlop.returnValue('actual_value'), 'actual_value');
   });
+  // BUG test that cause segfault without flutter
   test('process returns last yielded value', () async {
     final testBlop = TestBlop();
     expect(await testBlop.returnLast('actual_value'), 'actual_value');
