@@ -1,14 +1,44 @@
 # massa_utils
 
-A new Flutter package project.
+Utilities to work with bloc
 
-## Getting Started
+# How to use
+## Subscription manager
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+```dart
+// add mixin to class
+class SumCubit extends Cubit<int> with BlocSubscriptionManager{
+    final List<BlocBase<int>> blocs;
+    MulByTwo(this.blocs):super(0){
+        // subscribe to updates
+        listenBlocs(blocs,recalc);
+    }
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+    // do some action when any of blocs update
+    void recalc(){
+        emit(blocs.map((v) => v.state).fold(0,(a,b) => a + b));
+    }
+
+    @override
+    Future<void> close() async {
+        // close sub
+        await closeManager();
+        return super.close();
+    }
+}
+
+```
+
+## Cubits
+
+Add helper to create cubits, from stream, future and value. Usable for testing.
+b
+```dart
+// create cubit with fixed value
+final valueCubit = Cubits.fromValue(42);
+// create cubit that emit all data events from stream
+// transform stream to simple behaviorSubject, aka. cubit
+final streamCubit = Cubits.fromStream(0, Stream.periodic(duration, (id) => id));
+// create cubit that emit single event when future complete
+final futureCubit = Cubits.fromFuture(0, Future.delayed(duration, () => 42));)
+```
