@@ -18,6 +18,7 @@ dependency:
 
 # Features
 
+
 ## base usage
 ```dart
 class CurrentUserData extends RemoteValueBlop<UserModel>{
@@ -38,7 +39,7 @@ class CurrentUserData extends RemoteValueBlop<UserModel>{
 final user = CurrentUserData(currentUserLoader);
 
 // change loader
-// emit new loader fn that trigger auto reload of user
+// emit new loader function that trigger auto reload of user
 currentUserLoader.changeId(newId); 
 
 // manual reload
@@ -52,7 +53,7 @@ user.reload();
 user.reload();
 
 // add ability to await state loading
-// return current loaded state or await next loaded event
+// return current loaded state or await next loaded event data or error
 await data.loadingFuture;
 
 
@@ -65,7 +66,7 @@ class ShopList extends RemoteValueBlop<ShopModel>{
 
 ## Wotk with state 
 ```dart
-late final RemoteValue<T> state = remoteValueBlop.state;
+late final RemoteModel<T> state = remoteValueBlop.state;
 
 // concrete state check
 state.isInitial;
@@ -77,11 +78,11 @@ state.isData;
 // return true if error or data
 state.isLoaded;
 
-// if data transform from T to E, in other cases cast to E
-state.transformData<E>((T v) => transform(v));// return RemoteValue<E>
+// if data transform from T to E, in other cases cast to RemoteModel<E>
+state.transformData<E>((T v) => transform(v));// return RemoteModel<E>
 
 // cast data to E
-state.cast<E>(); // return RemoteValue<E>
+state.cast<E>(); // return RemoteModel<E>
 ```
 
 - [ ] Extend with typed event's

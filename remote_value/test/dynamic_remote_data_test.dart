@@ -24,45 +24,45 @@ class SRemote extends RemoteValueBlop<String> {
 void main() {
   test('correct state switch', () async {
     final v = SRemote(dataCubit());
-    expect(v.state, RemoteValue.initial());
+    expect(v.state, RemoteModel.initial());
     // ignore: unawaited_futures
     v.reload();
 
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
     // ignore: unawaited_futures
     v.reload();
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
   });
 
   test('loading future return value', () async {
     final v = SRemote(dataCubit());
-    expect(v.state, RemoteValue.initial());
+    expect(v.state, RemoteModel.initial());
 
-    expect(await v.reload(), RemoteValue.data('loaded'));
+    expect(await v.reload(), RemoteModel.data('loaded'));
   });
 
   test('auto reload', () async {
     final v = SRemote(dataCubit());
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
   });
 
   test('reload on change', () async {
     final _dataCubit = dataCubit();
     final v = SRemote(_dataCubit);
     // skip initial reload
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
 
     _dataCubit.emit(() => 'hell');
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('hell'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('hell'));
 
     _dataCubit.emit(() => 'hell2');
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('hell2'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('hell2'));
   });
 
   test('reload with exception', () async {
@@ -71,18 +71,18 @@ void main() {
         final _dataCubit = dataCubit();
         final v = SRemote(_dataCubit);
         // skip initial reload
-        expect(await v.stream.first, RemoteValue.loading());
-        expect(await v.stream.first, RemoteValue.data('loaded'));
+        expect(await v.stream.first, RemoteModel.loading());
+        expect(await v.stream.first, RemoteModel.data('loaded'));
 
         _dataCubit.emit(() => 'hell');
-        expect(await v.stream.first, RemoteValue.loading());
-        expect(await v.stream.first, RemoteValue.data('hell'));
+        expect(await v.stream.first, RemoteModel.loading());
+        expect(await v.stream.first, RemoteModel.data('hell'));
 
         _dataCubit.emit(() => throw 'err');
-        expect(await v.stream.first, RemoteValue.loading());
+        expect(await v.stream.first, RemoteModel.loading());
 
         await v.stream.first;
-        expect(v.state, RemoteValue.error('err'));
+        expect(v.state, RemoteModel.error('err'));
         assert(true, 'Unreachable');
       },
       (e, __) => expect(e, 'err'),

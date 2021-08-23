@@ -46,7 +46,7 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
     _currentUpdate = _updateWithInit;
   }
 
-  Future<RemoteValue<T>> _reloadWithInit() async {
+  Future<RemoteModel<T>> _reloadWithInit() async {
     await _store.init(_defaultValue, _valueName);
     _currentUpdate = _update;
     _currentReload = super.reload;
@@ -55,34 +55,34 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
   }
 
   @override
-  Future<RemoteValue<T>> reload() async {
+  Future<RemoteModel<T>> reload() async {
     return _currentReload();
   }
 
   @override
   @blopProcess
-  Stream<RemoteValue<T>> __updateWithInit(
+  Stream<RemoteModel<T>> __updateWithInit(
     T Function(T v) updateFn,
   ) async* {
     await _store.init(_defaultValue, _valueName);
     final data = await _store.load();
-    yield RemoteValue.data(data);
+    yield RemoteModel.data(data);
     await stream.first;
     yield (await __update(updateFn));
     _currentUpdate = _update;
     _currentReload = super.reload;
   }
 
-  Future<RemoteValue<T>> update(T Function(T v) updateFn) {
+  Future<RemoteModel<T>> update(T Function(T v) updateFn) {
     return _currentUpdate(updateFn);
   }
 
   @override
   @blopProcess
-  FutureOr<RemoteValue<T>> __update(T Function(T v) updateFn) async {
+  FutureOr<RemoteModel<T>> __update(T Function(T v) updateFn) async {
     return state.maybeWhen(
       data: (v) async {
-        return RemoteValue.data(await _store.save(updateFn(v)));
+        return RemoteModel.data(await _store.save(updateFn(v)));
       },
       orElse: () => state,
     );

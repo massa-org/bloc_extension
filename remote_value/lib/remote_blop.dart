@@ -10,7 +10,7 @@ import 'package:remote_value/remote_value.dart';
 part 'remote_blop.g.dart';
 
 @blopProcessor
-abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
+abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
     with BlocSubscriptionManager, _$RemoteValueBlop<T> {
   final Cubit<FutureOr<T> Function()> loaderBloc;
 
@@ -18,7 +18,7 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
     this.loaderBloc, {
     bool reloadOnLoaderChange = true,
     bool reloadOnCreate = true,
-  }) : super(RemoteValue.initial()) {
+  }) : super(RemoteModel.initial()) {
     if (reloadOnLoaderChange) listenBlocs([loaderBloc], reload);
     if (reloadOnCreate) reload();
   }
@@ -27,12 +27,12 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
     FutureOr<T> Function() loader, {
     bool reloadOnCreate = true,
   })  : loaderBloc = Cubits.fromValue(loader),
-        super(RemoteValue.initial()) {
+        super(RemoteModel.initial()) {
     if (reloadOnCreate) reload();
   }
 
   /// return state if it loaded or await first data | error event and return
-  Future<RemoteValue<T>> get loadingFuture async {
+  Future<RemoteModel<T>> get loadingFuture async {
     if (state.isLoaded) return state;
     return stream.firstWhere((e) => state.isLoaded);
   }
@@ -45,16 +45,16 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
 
   @override
   @blopProcess
-  Stream<RemoteValue<T>> _reload() async* {
-    yield RemoteValue.loading();
+  Stream<RemoteModel<T>> _reload() async* {
+    yield RemoteModel.loading();
 
-    yield RemoteValue.data(await loaderBloc.state());
+    yield RemoteModel.data(await loaderBloc.state());
   }
 
   // supress all errors and convert it to RemoteDataModel.error
   @override
-  Stream<RemoteValue<T>> mapEventToState(
-    BlopEvent<RemoteValue<T>> event,
+  Stream<RemoteModel<T>> mapEventToState(
+    BlopEvent<RemoteModel<T>> event,
   ) async* {
     try {
       final str = super.mapEventToState(event);
@@ -62,10 +62,10 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteValue<T>>
         yield state;
       }
     } on MethodExecutionException catch (error) {
-      yield RemoteValue.error(error.error);
+      yield RemoteModel.error(error.error);
       rethrow;
     } catch (error) {
-      yield RemoteValue.error(error);
+      yield RemoteModel.error(error);
       rethrow;
     }
   }

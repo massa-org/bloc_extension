@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$RemoteValueTearOff {
-  const _$RemoteValueTearOff();
+class _$RemoteModelTearOff {
+  const _$RemoteModelTearOff();
 
   _Initial<T> initial<T>() {
     return _Initial<T>();
@@ -38,10 +38,10 @@ class _$RemoteValueTearOff {
 }
 
 /// @nodoc
-const $RemoteValue = _$RemoteValueTearOff();
+const $RemoteModel = _$RemoteModelTearOff();
 
 /// @nodoc
-mixin _$RemoteValue<T> {
+mixin _$RemoteModel<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -79,20 +79,20 @@ mixin _$RemoteValue<T> {
 }
 
 /// @nodoc
-abstract class $RemoteValueCopyWith<T, $Res> {
-  factory $RemoteValueCopyWith(
-          RemoteValue<T> value, $Res Function(RemoteValue<T>) then) =
-      _$RemoteValueCopyWithImpl<T, $Res>;
+abstract class $RemoteModelCopyWith<T, $Res> {
+  factory $RemoteModelCopyWith(
+          RemoteModel<T> value, $Res Function(RemoteModel<T>) then) =
+      _$RemoteModelCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$RemoteValueCopyWithImpl<T, $Res>
-    implements $RemoteValueCopyWith<T, $Res> {
-  _$RemoteValueCopyWithImpl(this._value, this._then);
+class _$RemoteModelCopyWithImpl<T, $Res>
+    implements $RemoteModelCopyWith<T, $Res> {
+  _$RemoteModelCopyWithImpl(this._value, this._then);
 
-  final RemoteValue<T> _value;
+  final RemoteModel<T> _value;
   // ignore: unused_field
-  final $Res Function(RemoteValue<T>) _then;
+  final $Res Function(RemoteModel<T>) _then;
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ abstract class _$InitialCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
+class __$InitialCopyWithImpl<T, $Res> extends _$RemoteModelCopyWithImpl<T, $Res>
     implements _$InitialCopyWith<T, $Res> {
   __$InitialCopyWithImpl(_Initial<T> _value, $Res Function(_Initial<T>) _then)
       : super(_value, (v) => _then(v as _Initial<T>));
@@ -119,7 +119,7 @@ class _$_Initial<T> extends _Initial<T> {
 
   @override
   String toString() {
-    return 'RemoteValue<$T>.initial()';
+    return 'RemoteModel<$T>.initial()';
   }
 
   @override
@@ -183,7 +183,7 @@ class _$_Initial<T> extends _Initial<T> {
   }
 }
 
-abstract class _Initial<T> extends RemoteValue<T> {
+abstract class _Initial<T> extends RemoteModel<T> {
   const factory _Initial() = _$_Initial<T>;
   const _Initial._() : super._();
 }
@@ -196,7 +196,7 @@ abstract class _$DataCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
+class __$DataCopyWithImpl<T, $Res> extends _$RemoteModelCopyWithImpl<T, $Res>
     implements _$DataCopyWith<T, $Res> {
   __$DataCopyWithImpl(_Data<T> _value, $Res Function(_Data<T>) _then)
       : super(_value, (v) => _then(v as _Data<T>));
@@ -227,7 +227,7 @@ class _$_Data<T> extends _Data<T> {
 
   @override
   String toString() {
-    return 'RemoteValue<$T>.data(value: $value)';
+    return 'RemoteModel<$T>.data(value: $value)';
   }
 
   @override
@@ -300,7 +300,7 @@ class _$_Data<T> extends _Data<T> {
   }
 }
 
-abstract class _Data<T> extends RemoteValue<T> {
+abstract class _Data<T> extends RemoteModel<T> {
   const factory _Data(T value) = _$_Data<T>;
   const _Data._() : super._();
 
@@ -318,7 +318,7 @@ abstract class _$LoadingCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
+class __$LoadingCopyWithImpl<T, $Res> extends _$RemoteModelCopyWithImpl<T, $Res>
     implements _$LoadingCopyWith<T, $Res> {
   __$LoadingCopyWithImpl(_Loading<T> _value, $Res Function(_Loading<T>) _then)
       : super(_value, (v) => _then(v as _Loading<T>));
@@ -334,7 +334,7 @@ class _$_Loading<T> extends _Loading<T> {
 
   @override
   String toString() {
-    return 'RemoteValue<$T>.loading()';
+    return 'RemoteModel<$T>.loading()';
   }
 
   @override
@@ -398,7 +398,7 @@ class _$_Loading<T> extends _Loading<T> {
   }
 }
 
-abstract class _Loading<T> extends RemoteValue<T> {
+abstract class _Loading<T> extends RemoteModel<T> {
   const factory _Loading() = _$_Loading<T>;
   const _Loading._() : super._();
 }
@@ -411,7 +411,7 @@ abstract class _$ErrorCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<T, $Res> extends _$RemoteValueCopyWithImpl<T, $Res>
+class __$ErrorCopyWithImpl<T, $Res> extends _$RemoteModelCopyWithImpl<T, $Res>
     implements _$ErrorCopyWith<T, $Res> {
   __$ErrorCopyWithImpl(_Error<T> _value, $Res Function(_Error<T>) _then)
       : super(_value, (v) => _then(v as _Error<T>));
@@ -442,7 +442,7 @@ class _$_Error<T> extends _Error<T> {
 
   @override
   String toString() {
-    return 'RemoteValue<$T>.error(error: $error)';
+    return 'RemoteModel<$T>.error(error: $error)';
   }
 
   @override
@@ -515,7 +515,7 @@ class _$_Error<T> extends _Error<T> {
   }
 }
 
-abstract class _Error<T> extends RemoteValue<T> {
+abstract class _Error<T> extends RemoteModel<T> {
   const factory _Error(dynamic error) = _$_Error<T>;
   const _Error._() : super._();
 

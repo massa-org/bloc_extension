@@ -62,20 +62,20 @@ void main() async {
   test('check correct initialization', () async {
     final pb = PBTest();
 
-    expect(pb.state, RemoteValue.initial());
-    expect(await pb.reload(), RemoteValue.data('initial default value'));
+    expect(pb.state, RemoteModel.initial());
+    expect(await pb.reload(), RemoteModel.data('initial default value'));
   });
 
   test('catch error from initialization', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteValue.initial());
+    expect(pb.state, RemoteModel.initial());
 
     expect(pb.reload(), throwsA('err'));
   });
 
   test('catch error from initialization multiple times', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteValue.initial());
+    expect(pb.state, RemoteModel.initial());
 
     expect(pb.reload(), throwsA('err'));
     expect(pb.reload(), throwsA('err'));
@@ -83,49 +83,49 @@ void main() async {
 
   test('error from initialization appear in state', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteValue.initial());
+    expect(pb.state, RemoteModel.initial());
 
     await pb.reload().onError((error, stackTrace) => pb.state);
 
-    expect(pb.state, RemoteValue.error('err'));
+    expect(pb.state, RemoteModel.error('err'));
   });
 
   test('check correct value update', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteValue.initial());
-    expect(await pb.reload(), RemoteValue.data('initial default value'));
+    expect(pb.state, RemoteModel.initial());
+    expect(await pb.reload(), RemoteModel.data('initial default value'));
 
     expect(
       await pb.update((_) => 'new_value'),
-      RemoteValue.data('new_value'),
+      RemoteModel.data('new_value'),
     );
   });
 
   test('update work correct without init', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteValue.initial());
+    expect(pb.state, RemoteModel.initial());
 
     expect(
       await pb.update((_) => 'new_value'),
-      RemoteValue.data('new_value'),
+      RemoteModel.data('new_value'),
     );
   });
   test('update catch error from init', () async {
     final pb = PBTest(defaultValue: () => throw 'err');
-    expect(pb.state, RemoteValue.initial());
+    expect(pb.state, RemoteModel.initial());
 
     expect(
       pb.update((_) => 'new_value'),
       throwsA('err'),
     );
     await pb.stream.first;
-    expect(pb.state, RemoteValue.error('err'));
+    expect(pb.state, RemoteModel.error('err'));
   });
 
   test('catch error from update', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteValue.initial());
-    expect(await pb.reload(), RemoteValue.data('initial default value'));
+    expect(pb.state, RemoteModel.initial());
+    expect(await pb.reload(), RemoteModel.data('initial default value'));
 
     expect(
       pb.update((_) => throw 'error'),
@@ -135,15 +135,15 @@ void main() async {
 
   test('error from update appear in state', () async {
     final pb = PBTest();
-    expect(pb.state, RemoteValue.initial());
-    expect(await pb.reload(), RemoteValue.data('initial default value'));
+    expect(pb.state, RemoteModel.initial());
+    expect(await pb.reload(), RemoteModel.data('initial default value'));
     await pb
         .update((_) => throw 'error')
         .onError((error, stackTrace) => pb.state);
 
     expect(
       pb.state,
-      RemoteValue.error('error'),
+      RemoteModel.error('error'),
     );
   });
 }

@@ -28,30 +28,30 @@ class SRemote extends RemoteValueBlop<String> {
 void main() {
   test('correct state switch', () async {
     final v = SRemote();
-    expect(v.state, RemoteValue.initial());
+    expect(v.state, RemoteModel.initial());
     // ignore: unawaited_futures
     v.reload();
 
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
     // ignore: unawaited_futures
     v.reload();
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.data('loaded'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.data('loaded'));
   });
 
   test('loading future return value', () async {
     final v = SRemote();
-    expect(v.state, RemoteValue.initial());
+    expect(v.state, RemoteModel.initial());
 
-    expect(await v.reload(), RemoteValue.data('loaded'));
+    expect(await v.reload(), RemoteModel.data('loaded'));
   });
 
   test('correct error behavior', () async {
     final v = SRemote(() => throw 'error');
-    expect(v.state, RemoteValue.initial());
+    expect(v.state, RemoteModel.initial());
     expect(v.reload(), throwsA('error'));
-    expect(await v.stream.first, RemoteValue.loading());
-    expect(await v.stream.first, RemoteValue.error('error'));
+    expect(await v.stream.first, RemoteModel.loading());
+    expect(await v.stream.first, RemoteModel.error('error'));
   });
 }

@@ -3,31 +3,31 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'remote_model.freezed.dart';
 
 @freezed
-abstract class RemoteValue<T> implements _$RemoteValue<T> {
-  const RemoteValue._();
+abstract class RemoteModel<T> implements _$RemoteModel<T> {
+  const RemoteModel._();
 
-  const factory RemoteValue.initial() = _Initial;
-  const factory RemoteValue.data(T value) = _Data;
-  const factory RemoteValue.loading() = _Loading;
-  const factory RemoteValue.error(dynamic error) = _Error;
+  const factory RemoteModel.initial() = _Initial;
+  const factory RemoteModel.data(T value) = _Data;
+  const factory RemoteModel.loading() = _Loading;
+  const factory RemoteModel.error(dynamic error) = _Error;
 
   // transformers
   // transform on data and cast on other
-  RemoteValue<E> transformData<E>(E Function(T value) transform) {
+  RemoteModel<E> transformData<E>(E Function(T value) transform) {
     return when(
-      initial: () => RemoteValue.initial(),
-      loading: () => RemoteValue.loading(),
-      data: (v) => RemoteValue.data(transform(v)),
-      error: (error) => RemoteValue.error(error),
+      initial: () => RemoteModel.initial(),
+      loading: () => RemoteModel.loading(),
+      data: (v) => RemoteModel.data(transform(v)),
+      error: (error) => RemoteModel.error(error),
     );
   }
 
-  RemoteValue<E> cast<E>() {
+  RemoteModel<E> cast<E>() {
     return when(
-      initial: () => RemoteValue.initial(),
-      loading: () => RemoteValue.loading(),
-      data: (v) => RemoteValue.data(v as E),
-      error: (error) => RemoteValue.error(error),
+      initial: () => RemoteModel.initial(),
+      loading: () => RemoteModel.loading(),
+      data: (v) => RemoteModel.data(v as E),
+      error: (error) => RemoteModel.error(error),
     );
   }
 
