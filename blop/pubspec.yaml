@@ -1,7 +1,7 @@
 name: blop
-description: A new Flutter package project.
+description: Package that based on bloc and provide simplified flow to define process and manage state
 version: 0.0.2
-homepage:
+homepage: https://github.com/massa-org/massa.flutter
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
