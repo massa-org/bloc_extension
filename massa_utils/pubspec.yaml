@@ -1,7 +1,7 @@
 name: massa_utils
 description: Utilities to work with bloc
 version: 0.0.2
-homepage: https://github.com/massa-org/bloc_extension
+homepage: https://github.com/massa-org/massa.flutter
 
 
 environment:
