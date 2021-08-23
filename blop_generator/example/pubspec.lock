@@ -39,12 +39,10 @@ packages:
   blop:
     dependency: "direct main"
     description:
-      path: blop
-      ref: HEAD
-      resolved-ref: "1ef6f7e0614d39a61579280a87f8045480cef758"
-      url: "git@github.com:massa-org/bloc_extension.git"
-    source: git
-    version: "0.0.1"
+      name: blop
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   blop_generator:
     dependency: "direct dev"
     description:
@@ -296,9 +294,9 @@ packages:
   massa_utils:
     dependency: "direct main"
     description:
-      path: "../../massa_utils"
-      relative: true
-    source: path
+      name: massa_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.2"
   matcher:
     dependency: transitive

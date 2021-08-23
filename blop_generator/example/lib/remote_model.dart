@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'remote_model.freezed.dart';
 
+// Simple implementation of remote data pattern
 @freezed
 abstract class RemoteDataModel<T> implements _$RemoteDataModel<T> {
   const RemoteDataModel._();

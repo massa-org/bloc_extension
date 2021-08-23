@@ -14,16 +14,10 @@ dependencies:
     sdk: flutter
   
   bloc: ^7.0.0
-  blop: 
-    git:
-      url: git@github.com:massa-org/bloc_extension.git
-      path: blop
+  blop: ^0.0.2
 
   freezed_annotation: ^0.14.2
-  massa_utils:
-    path: ../../massa_utils
-    # git: 
-    #   url: git@github.com:massa-org/bloc_extension.git
+  massa_utils: ^0.0.2
 
 dev_dependencies:
   flutter_test:

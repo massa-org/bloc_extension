@@ -39,11 +39,9 @@ packages:
   blop:
     dependency: "direct main"
     description:
-      path: blop
-      ref: HEAD
-      resolved-ref: "086cc4fff7334011923ea66338bb7041ce11a358"
-      url: "git@github.com:massa-org/bloc_extension.git"
-    source: git
+      name: blop
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.2"
   boolean_selector:
     dependency: transitive
@@ -315,7 +313,7 @@ packages:
     source: hosted
     version: "1.8.0"
   pedantic:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
