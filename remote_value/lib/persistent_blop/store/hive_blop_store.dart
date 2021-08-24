@@ -26,7 +26,7 @@ class HiveBlopStore<T> extends PersistentBlopStore<T> {
       return box.getAt(0) as T;
     } else {
       final def = await defaultValue();
-      await box.putAt(0, def);
+      await box.add(def);
       return def;
     }
   }
