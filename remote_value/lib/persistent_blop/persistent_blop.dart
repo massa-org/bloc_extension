@@ -46,7 +46,7 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
     _currentReload = _reloadWithInit;
     _currentUpdate = _updateWithInit;
 
-    if(reloadOnCreate)reload();
+    if (reloadOnCreate) reload();
   }
 
   Future<RemoteModel<T>> _reloadWithInit() async {
