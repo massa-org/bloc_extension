@@ -17,6 +17,7 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
   final PersistentBlopStore<T> _store;
   late final Cubit<FutureOr<T> Function()> _reloadCubit;
   final FutureOr<T> Function() _defaultValue;
+
   late final String _valueName;
 
   static dynamic _lrc;
@@ -50,11 +51,21 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
   }
 
   Future<RemoteModel<T>> _reloadWithInit() async {
-    await _store.init(_defaultValue, _valueName);
-    _currentUpdate = _update;
-    _currentReload = super.reload;
+    // block the exectutions of other methods
+    return executeMethod(
+      () async* {
+        await _store.init(_defaultValue, _valueName);
 
-    return super.reload();
+        _currentUpdate = _update;
+        _currentReload = super.reload;
+
+        // manual reload cause super.reload never completes inside of this function
+        yield RemoteModel.loading();
+
+        yield RemoteModel.data(await loaderBloc.state());
+      },
+      'reload',
+    );
   }
 
   @override

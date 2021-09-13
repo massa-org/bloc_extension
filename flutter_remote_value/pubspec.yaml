@@ -1,6 +1,6 @@
 name: flutter_remote_value
 description: Package that provide widget which map remote value to widgets
-version: 0.0.4
+version: 0.0.4+1
 homepage: https://github.com/massa-org/massa.flutter
 
 environment:

@@ -1,4 +1,6 @@
-## 0.0.3
+## 0.0.4+1
+* bugfix persistent store init multiple times
+## 0.0.4
 * add RemoteValueBlopBase class
 ## 0.0.3
 * add reloadOnCreate to persistent blop
