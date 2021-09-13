@@ -9,9 +9,15 @@ import 'package:remote_value/remote_value.dart';
 
 part 'remote_blop.g.dart';
 
+/// base class to use in generics
+abstract class RemoteValueBlopBase<T> implements BlocBase<RemoteModel<T>> {
+  Future<RemoteModel<T>> reload();
+}
+
 @blopProcessor
 abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
-    with BlocSubscriptionManager, _$RemoteValueBlop<T> {
+    with BlocSubscriptionManager, _$RemoteValueBlop<T>
+    implements RemoteValueBlopBase<T> {
   final Cubit<FutureOr<T> Function()> loaderBloc;
 
   RemoteValueBlop(
