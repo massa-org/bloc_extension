@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:remote_value/persistent_blop/persistent_blop.dart';
 import 'package:remote_value/persistent_blop/store/persistent_blop_store.dart';
 import 'package:remote_value/remote_value.dart';

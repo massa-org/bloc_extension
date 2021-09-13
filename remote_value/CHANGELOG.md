@@ -1,3 +1,5 @@
+## 0.0.5
+* hive string store
 ## 0.0.4+2
 * bugfix persistent store init multiple times
 ## 0.0.4
