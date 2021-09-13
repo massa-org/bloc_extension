@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:blop/blop.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:remote_value/persistent_blop/persistent_blop.dart';
 import 'package:remote_value/persistent_blop/store/persistent_blop_store.dart';
 import 'package:remote_value/remote_value.dart';
@@ -12,16 +13,18 @@ class MockStore<T> extends PersistentBlopStore<T> {
   bool hasValue = false;
   bool isInit = false;
   late T val;
-  late _DefaultFn<T> defaultValue;
+  late final _DefaultFn<T> defaultValue;
 
   @override
   Future<void> init(_DefaultFn<T> defaultValue, String valueName) async {
     this.defaultValue = defaultValue;
     isInit = true;
+    return Future.delayed(Duration(milliseconds: 30));
   }
 
   @override
   Future<T> load() async {
+    await Future.delayed(Duration(milliseconds: 30));
     if (isInit == false) throw 'uninitialized_error';
     if (hasValue) {
       return val;
@@ -39,13 +42,14 @@ class MockStore<T> extends PersistentBlopStore<T> {
 }
 
 class PBTest extends PersistentValueBlop<String> {
-  PBTest({String Function()? defaultValue})
+  PBTest({String Function()? defaultValue, bool reload = true})
       : super(
           () => Future.delayed(
             Duration(milliseconds: 50),
             defaultValue ?? () => 'initial default value',
           ),
           store: MockStore<String>(),
+          reloadOnCreate: reload,
         );
 
   // need this to prevent UnhandledBlocException in debug mode
@@ -66,15 +70,23 @@ void main() async {
     expect(await pb.reload(), RemoteModel.data('initial default value'));
   });
 
+  test('double reload does\'t throw any exception', () async {
+    final pb = PBTest();
+    pb.reload();
+
+    expect(pb.state, RemoteModel.initial());
+    expect(await pb.reload(), RemoteModel.data('initial default value'));
+  });
+
   test('catch error from initialization', () async {
-    final pb = PBTest(defaultValue: () => throw 'err');
+    final pb = PBTest(defaultValue: () => throw 'err', reload: false);
     expect(pb.state, RemoteModel.initial());
 
     expect(pb.reload(), throwsA('err'));
   });
 
   test('catch error from initialization multiple times', () async {
-    final pb = PBTest(defaultValue: () => throw 'err');
+    final pb = PBTest(defaultValue: () => throw 'err', reload: false);
     expect(pb.state, RemoteModel.initial());
 
     expect(pb.reload(), throwsA('err'));
@@ -82,7 +94,7 @@ void main() async {
   });
 
   test('error from initialization appear in state', () async {
-    final pb = PBTest(defaultValue: () => throw 'err');
+    final pb = PBTest(defaultValue: () => throw 'err', reload: false);
     expect(pb.state, RemoteModel.initial());
 
     await pb.reload().onError((error, stackTrace) => pb.state);
@@ -102,7 +114,7 @@ void main() async {
   });
 
   test('update work correct without init', () async {
-    final pb = PBTest();
+    final pb = PBTest(reload: false);
     expect(pb.state, RemoteModel.initial());
 
     expect(
@@ -111,14 +123,14 @@ void main() async {
     );
   });
   test('update catch error from init', () async {
-    final pb = PBTest(defaultValue: () => throw 'err');
+    final pb = PBTest(defaultValue: () => throw 'err', reload: false);
     expect(pb.state, RemoteModel.initial());
 
     expect(
       pb.update((_) => 'new_value'),
       throwsA('err'),
     );
-    await pb.stream.first;
+    await pb.stream.firstWhere((e) => e.isError);
     expect(pb.state, RemoteModel.error('err'));
   });
 

@@ -1,4 +1,4 @@
-## 0.0.4+1
+## 0.0.4+2
 * bugfix persistent store init multiple times
 ## 0.0.4
 * add RemoteValueBlopBase class

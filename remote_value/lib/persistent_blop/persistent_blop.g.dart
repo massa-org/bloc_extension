@@ -7,11 +7,9 @@ part of 'persistent_blop.dart';
 // **************************************************************************
 
 abstract class _BlopInterfacePersistentValueBlop<T> {
-  Stream<RemoteModel<T>> __updateWithInit(
-    T Function(T) updateFn,
-  );
+  Stream<RemoteModel<T>> _reload();
 
-  FutureOr<RemoteModel<T>> __update(
+  Stream<RemoteModel<T>> _update(
     T Function(T) updateFn,
   );
 }
@@ -19,25 +17,21 @@ abstract class _BlopInterfacePersistentValueBlop<T> {
 mixin _$PersistentValueBlop<T>
     on Blop<BlopEvent<RemoteModel<T>>, RemoteModel<T>>
     implements _BlopInterfacePersistentValueBlop<T> {
-// annotated element: __updateWithInit generator: Stream<stateType>
-  Future<RemoteModel<T>> _updateWithInit(
-    T Function(T) updateFn,
-  ) async {
+// annotated element: _reload generator: Stream<stateType>
+  Future<RemoteModel<T>> reload() async {
     return executeMethod(
-      () => __updateWithInit(updateFn),
-      '__updateWithInit',
+      () => _reload(),
+      '_reload',
     );
   }
 
-// annotated element: __update generator: FutureOr<stateType>
-  Future<RemoteModel<T>> _update(
+// annotated element: _update generator: Stream<stateType>
+  Future<RemoteModel<T>> update(
     T Function(T) updateFn,
   ) async {
     return executeMethod(
-      () async* {
-        yield (await __update(updateFn));
-      },
-      '__update',
+      () => _update(updateFn),
+      '_update',
     );
   }
 }

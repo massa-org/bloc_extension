@@ -21,9 +21,7 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
   late final String _valueName;
 
   static dynamic _lrc;
-
-  var _currentReload;
-  var _currentUpdate;
+  bool _storeIsInit = false;
 
   PersistentValueBlop(
     this._defaultValue, {
@@ -44,57 +42,26 @@ class PersistentValueBlop<T> extends RemoteValueBlop<T>
     _lrc = null;
     _reloadCubit.emit(_store.load);
 
-    _currentReload = _reloadWithInit;
-    _currentUpdate = _updateWithInit;
-
     if (reloadOnCreate) reload();
   }
 
-  Future<RemoteModel<T>> _reloadWithInit() async {
-    // block the exectutions of other methods
-    return executeMethod(
-      () async* {
-        await _store.init(_defaultValue, _valueName);
-
-        _currentUpdate = _update;
-        _currentReload = super.reload;
-
-        // manual reload cause super.reload never completes inside of this function
-        yield RemoteModel.loading();
-
-        yield RemoteModel.data(await loaderBloc.state());
-      },
-      'reload',
-    );
-  }
-
   @override
-  Future<RemoteModel<T>> reload() async {
-    return _currentReload();
+  @blopProcess
+  Stream<RemoteModel<T>> _reload() async* {
+    if (_storeIsInit == false) {
+      await _store.init(_defaultValue, _valueName);
+      _storeIsInit = true;
+    }
+    yield RemoteModel.loading();
+    yield RemoteModel.data(await loaderBloc.state());
   }
 
   @override
   @blopProcess
-  Stream<RemoteModel<T>> __updateWithInit(
-    T Function(T v) updateFn,
-  ) async* {
-    await _store.init(_defaultValue, _valueName);
-    final data = await _store.load();
-    yield RemoteModel.data(data);
-    await stream.first;
-    yield (await __update(updateFn));
-    _currentUpdate = _update;
-    _currentReload = super.reload;
-  }
+  Stream<RemoteModel<T>> _update(T Function(T v) updateFn) async* {
+    if (_storeIsInit == false) yield* _reload();
 
-  Future<RemoteModel<T>> update(T Function(T v) updateFn) {
-    return _currentUpdate(updateFn);
-  }
-
-  @override
-  @blopProcess
-  FutureOr<RemoteModel<T>> __update(T Function(T v) updateFn) async {
-    return state.maybeWhen(
+    yield await state.maybeWhen(
       data: (v) async {
         return RemoteModel.data(await _store.save(updateFn(v)));
       },
