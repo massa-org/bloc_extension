@@ -15,7 +15,7 @@ class DefaultRemoteValueErrorWidget extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: onReload,
-          child: Text(RemoteDataTheme.of(context).errorButtonText),
+          child: Text(RemoteValueTheme.of(context).errorButtonText),
         ),
       ),
     );

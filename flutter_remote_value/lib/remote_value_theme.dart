@@ -26,7 +26,7 @@ Widget _defaultErrorBuilder(
 Widget _emptyBuilder(bool inSliver, [_1, _2, _3]) =>
     _wrap(inSliver, SizedBox.shrink());
 
-class RemoteDataThemeData {
+class RemoteValueThemeData {
   // can't compare this builders and this call rebuild every time it changes
   final Widget Function(
     bool inSliver,
@@ -42,31 +42,31 @@ class RemoteDataThemeData {
 
   final String errorButtonText;
 
-  const RemoteDataThemeData([
+  const RemoteValueThemeData([
     this.errorBuilder = _defaultErrorBuilder,
     this.loadingBuilder = _defaultLoadingBuilder,
     this.errorButtonText = 'Loading error retry?',
   ]);
 
-  const RemoteDataThemeData.onlyData()
+  const RemoteValueThemeData.onlyData()
       : errorBuilder = _emptyBuilder,
         loadingBuilder = _emptyBuilder,
         errorButtonText = '';
 }
 
-class _ThemeCubit extends Cubit<RemoteDataThemeData> {
-  _ThemeCubit(RemoteDataThemeData initialState) : super(initialState);
+class _ThemeCubit extends Cubit<RemoteValueThemeData> {
+  _ThemeCubit(RemoteValueThemeData initialState) : super(initialState);
 }
 
-class RemoteDataTheme extends BlocProvider<_ThemeCubit> {
+class RemoteValueTheme extends BlocProvider<_ThemeCubit> {
   // loader and error replaced by SizedBox.shrink()
-  RemoteDataTheme.onlyData(Widget child)
+  RemoteValueTheme.onlyData(Widget child)
       : super(
-          create: (ctx) => _ThemeCubit(RemoteDataThemeData.onlyData()),
+          create: (ctx) => _ThemeCubit(RemoteValueThemeData.onlyData()),
           child: child,
         );
 
-  RemoteDataTheme({
+  RemoteValueTheme({
     Key? key,
     required Widget child,
     Widget Function(
@@ -84,7 +84,7 @@ class RemoteDataTheme extends BlocProvider<_ThemeCubit> {
     String? defaultErrorButtonText,
   }) : super(
           create: (ctx) => _ThemeCubit(
-            RemoteDataThemeData(
+            RemoteValueThemeData(
               errorBuilder ?? _defaultErrorBuilder,
               loadingBuilder ?? _defaultLoadingBuilder,
               defaultErrorButtonText ?? 'Loading error retry?',
@@ -93,11 +93,11 @@ class RemoteDataTheme extends BlocProvider<_ThemeCubit> {
           child: child,
         );
 
-  static RemoteDataThemeData of(BuildContext context) {
+  static RemoteValueThemeData of(BuildContext context) {
     try {
       return context.watch<_ThemeCubit>().state;
     } catch (err) {
-      return const RemoteDataThemeData();
+      return const RemoteValueThemeData();
     }
   }
 }

@@ -14,14 +14,14 @@ class RemoteValueBuilder<T extends RemoteValueBlopBase<E>, E>
 
   @override
   Widget build(BuildContext context) {
-    final theme = RemoteDataTheme.of(context);
+    final theme = RemoteValueTheme.of(context);
     return context.select(
       (T value) => value.state.maybeWhen(
         data: (data) => builder(context, data),
         error: (e) => theme.errorBuilder(
           isSliver,
           context,
-          context.read<T>().reload,
+          value.reload,
           e,
         ),
         orElse: () => theme.loadingBuilder(isSliver, context),
