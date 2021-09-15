@@ -1,3 +1,6 @@
+## 0.0.3+1
+* fix build.yaml config
+
 ## 0.0.3
 * bump analyzer to 2.0
 
