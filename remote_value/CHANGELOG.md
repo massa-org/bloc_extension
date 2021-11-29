@@ -1,3 +1,5 @@
+## [0.0.6] - 29.11.2021
+* hive json store
 ## 0.0.5
 * hive string store
 ## 0.0.4+2

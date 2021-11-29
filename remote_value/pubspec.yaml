@@ -1,6 +1,6 @@
 name: remote_value
 description: Package that implement remote value abstraction and add cubit to mange it.
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/massa-org/massa.flutter
 
 environment:
