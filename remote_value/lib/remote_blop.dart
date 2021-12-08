@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -53,26 +55,36 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
   @blopProcess
   Stream<RemoteModel<T>> _reload() async* {
     yield RemoteModel.loading();
-
-    yield RemoteModel.data(await loaderBloc.state());
+    late RemoteModel<T> ret;
+    try {
+      ret = RemoteModel.data(await loaderBloc.state());
+    } catch (error) {
+      ret = RemoteModel.error(error);
+    }
+    yield ret;
   }
 
-  // supress all errors and convert it to RemoteDataModel.error
   @override
-  Stream<RemoteModel<T>> mapEventToState(
-    BlopEvent<RemoteModel<T>> event,
-  ) async* {
-    try {
-      final str = super.mapEventToState(event);
-      await for (final state in str) {
-        yield state;
-      }
-    } on MethodExecutionException catch (error) {
-      yield RemoteModel.error(error.error);
-      rethrow;
-    } catch (error) {
-      yield RemoteModel.error(error);
-      rethrow;
+  Stream<BlopEvent<RemoteModel<T>>> transformEvents(
+    Stream<BlopEvent<RemoteModel<T>>> events,
+    Stream<BlopEvent<RemoteModel<T>>> Function(
+      BlopEvent<RemoteModel<T>> event,
+    )
+        mapper,
+  ) {
+    return super
+        .transformEvents(events, mapper)
+        .handleError((error, stackTrace) => emit(RemoteModel.error(error)));
+  }
+
+  @override
+  // ignore: must_call_super
+  void onError(Object error, StackTrace stackTrace) {
+    if (error is MethodExecutionException) {
+      error.complete();
+      emit(RemoteModel.error(error.error));
+    } else {
+      emit(RemoteModel.error(error));
     }
   }
 }

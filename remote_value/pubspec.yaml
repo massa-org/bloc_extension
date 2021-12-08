@@ -1,6 +1,6 @@
 name: remote_value
 description: Package that implement remote value abstraction and add cubit to mange it.
-version: 0.0.6
+version: 0.1.0
 homepage: https://github.com/massa-org/massa.flutter
 
 environment:
@@ -11,13 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
   
-  bloc: ^7.0.0
-  blop: ^0.0.2
-  massa_utils: ^0.0.2
+  bloc: ^8.0.0
+  blop: ^0.1.0
+  massa_utils: ^0.1.0
 
   # for persistent store
   hive: ^2.0.0
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^1.0.0
   
 
 dev_dependencies:
@@ -25,8 +25,8 @@ dev_dependencies:
     sdk: flutter
   pedantic: ^1.11.1
 
-  blop_generator: ^0.0.3
-  freezed: ^0.14.2
+  blop_generator: ^0.1.0
+  freezed: ^1.0.0
   
   
   build_runner: ^2.0.0

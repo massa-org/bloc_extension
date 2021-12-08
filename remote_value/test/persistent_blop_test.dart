@@ -52,13 +52,7 @@ class PBTest extends PersistentValueBlop<String> {
         );
 
   // need this to prevent UnhandledBlocException in debug mode
-  @override
-  // ignore: must_call_super
-  void onError(Object error, StackTrace stackTrace) {
-    if (error is MethodExecutionException) {
-      error.complete();
-    }
-  }
+
 }
 
 void main() async {

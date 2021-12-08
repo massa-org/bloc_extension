@@ -50,8 +50,10 @@ void main() {
   test('correct error behavior', () async {
     final v = SRemote(() => throw 'error');
     expect(v.state, RemoteModel.initial());
-    expect(v.reload(), throwsA('error'));
+    final f = v.reload();
+
     expect(await v.stream.first, RemoteModel.loading());
     expect(await v.stream.first, RemoteModel.error('error'));
+    expect(await f, RemoteModel.error('error'));
   });
 }
