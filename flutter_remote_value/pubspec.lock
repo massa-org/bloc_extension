@@ -14,14 +14,14 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.0"
+    version: "8.0.1"
   blop:
     dependency: transitive
     description:
       name: blop
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2"
+    version: "0.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -82,7 +82,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.0"
+    version: "8.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -94,7 +94,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.2"
+    version: "1.0.0"
   hive:
     dependency: transitive
     description:
@@ -108,14 +108,14 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.4.0"
   massa_utils:
     dependency: transitive
     description:
       name: massa_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2"
+    version: "0.1.0"
   matcher:
     dependency: transitive
     description:
@@ -157,7 +157,14 @@ packages:
       name: remote_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5"
+    version: "0.1.0"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -220,5 +227,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.12.0 <3.0.0"
+  dart: ">=2.14.0 <3.0.0"
   flutter: ">=1.17.0"

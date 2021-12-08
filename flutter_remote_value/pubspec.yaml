@@ -1,6 +1,6 @@
 name: flutter_remote_value
 description: Package that provide widget which map remote value to widgets
-version: 0.0.5
+version: 0.1.0
 homepage: https://github.com/massa-org/massa.flutter
 
 environment:
@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_bloc: ^7.1.0
-  remote_value: ^0.0.5
+  flutter_bloc: ^8.0.0
+  remote_value: ^0.1.0
 
 dev_dependencies:
   flutter_test:
