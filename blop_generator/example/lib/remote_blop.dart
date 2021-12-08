@@ -44,15 +44,13 @@ abstract class RemoteDataBlop<T> extends SimpleBlop<RemoteDataModel<T>>
   }
 
   @override
-  Stream<Transition<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>>
-      transformEvents(
+  Stream<BlopEvent<RemoteDataModel<T>>> transformEvents(
     Stream<BlopEvent<RemoteDataModel<T>>> events,
-    TransitionFunction<BlopEvent<RemoteDataModel<T>>, RemoteDataModel<T>>
-        transitionFn,
+    Stream<BlopEvent<RemoteDataModel<T>>> Function(
+      BlopEvent<RemoteDataModel<T>> event,
+    )
+        mapper,
   ) {
-    return super.transformEvents(
-      events,
-      transitionFn,
-    );
+    return super.transformEvents(events, mapper);
   }
 }

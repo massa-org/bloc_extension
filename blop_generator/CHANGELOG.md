@@ -1,3 +1,6 @@
+## [0.1.0] - 2021-12-08
+
+- update deps.
 ## 0.0.3+2
 * fix build.yaml config
 

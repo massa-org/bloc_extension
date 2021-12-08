@@ -6,6 +6,7 @@ import 'package:build/build.dart';
 import 'package:build/src/builder/build_step.dart';
 import 'package:source_gen/source_gen.dart';
 
+// TODO add tests
 class BlopGenerator extends GeneratorForAnnotation<BlopProcessor> {
   @override
   String generateForAnnotatedElement(
