@@ -12,11 +12,23 @@ abstract class Blop<Event extends BlopEvent<State>, State>
     MethodCompleterStrategy? completerStrategy,
   })  : completerStrategy =
             completerStrategy ?? MethodCompleterStrategy.doNothing(),
-        super(initialState);
+        super(initialState) {
+    on<Event>(
+      (event, emit) async {
+        await event
+            .execute()
+            .handleError((err, stack) => addError(err, stack))
+            .forEach((e) => emit(e));
+      },
+      transformer: transformEvents,
+    );
+  }
 
-  @override
-  Stream<State> mapEventToState(Event event) {
-    return event.execute();
+  Stream<Event> transformEvents(
+    Stream<Event> events,
+    Stream<Event> Function(Event event) mapper,
+  ) {
+    return events.asyncExpand(mapper);
   }
 
   Future<State> executeMethod(

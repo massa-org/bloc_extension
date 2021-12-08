@@ -4,7 +4,7 @@ class _OlderCompleteStrategy extends _CancelCubitCompleterStrategy {
   // contains only Proccess count cubits
   final _cancelCubit = _CancelCubit();
   @override
-  Cubit<CompleteReason> cancelCubit(BlopEvent event) {
+  _CancelCubit cancelCubit(BlopEvent event) {
     return _cancelCubit;
   }
 
@@ -14,6 +14,7 @@ class _OlderCompleteStrategy extends _CancelCubitCompleterStrategy {
       CompleteReason.cancelWithError(
         1 << 53,
         BlopClosedException(blopType),
+        StackTrace.current,
       ),
     );
     return _cancelCubit.close();

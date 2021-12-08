@@ -26,11 +26,19 @@ class _DoNothing implements MethodCompleterStrategy {
 
   @override
   Future<void> waitComplete(BlopEvent event) async {
-    final reason = await event.completeFuture;
-    reason.maybeWhen(
-      error: (id, error) => throw error,
-      cancelWithError: (id, error) => throw error,
-      orElse: () {},
+    final completer = Completer();
+
+    // ignore: unawaited_futures
+    event.completeFuture.then(
+      (value) => value.maybeWhen(
+        error: (id, error, stackTrace) =>
+            completer.completeError(error, stackTrace),
+        cancelWithError: (id, error, stackTrace) =>
+            completer.completeError(error, stackTrace),
+        orElse: () => completer.complete(),
+      ),
     );
+
+    return completer.future;
   }
 }

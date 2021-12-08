@@ -24,10 +24,10 @@ class BlopEvent<T> {
         yield item;
       }
       _completer.complete(CompleteReason.done(id));
-    } catch (error) {
+    } catch (error, stackTrace) {
       throw MethodExecutionException(
         error,
-        () => _completer.complete(CompleteReason.error(id, error)),
+        () => _completer.complete(CompleteReason.error(id, error, stackTrace)),
       );
     }
   }

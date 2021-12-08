@@ -18,6 +18,7 @@ class _TypeBasedCompleterStrategy extends _CancelCubitCompleterStrategy {
             CompleteReason.cancelWithError(
               1 << 53,
               BlopClosedException(blopType),
+              StackTrace.current,
             ),
           );
           return item.value.close();

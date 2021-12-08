@@ -108,13 +108,13 @@ class DebounceBlop extends SimpleBlop<String> {
   }
 
   @override
-  Stream<Transition<BlopEvent<String>, String>> transformEvents(
+  Stream<BlopEvent<String>> transformEvents(
     Stream<BlopEvent<String>> events,
-    TransitionFunction<BlopEvent<String>, String> transitionFn,
+    Stream<BlopEvent<String>> Function(BlopEvent<String> event) mapper,
   ) {
     return super.transformEvents(
       events.debounceTime(Duration(milliseconds: 100)),
-      transitionFn,
+      mapper,
     );
   }
 

@@ -1,24 +1,24 @@
 name: blop
 description: Package that based on bloc and provide simplified flow to define process and manage state
-version: 0.0.2+1
+version: 0.1.0
 homepage: https://github.com/massa-org/massa.flutter
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^1.0.0
 
-  bloc: ^7.0.0
-  
+  bloc: ^8.0.0
+  rxdart: ^0.27.1
 
 dev_dependencies:
   test: ^1.17.11
 
   build_runner: ^2.0.3
 
-  freezed: ^0.14.2
-  rxdart: ^0.27.1 #for testing
+  freezed: ^1.0.0
+
   pedantic: ^1.11.1
 
 

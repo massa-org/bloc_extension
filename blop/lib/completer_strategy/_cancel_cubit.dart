@@ -2,11 +2,14 @@ part of 'blop_complete_strategy.dart';
 
 class _CancelCubit extends Cubit<CompleteReason> {
   _CancelCubit() : super(CompleteReason.done(-1));
+
+  @override
+  void emit(CompleteReason state) => super.emit(state);
 }
 
 abstract class _CancelCubitCompleterStrategy
     implements MethodCompleterStrategy {
-  Cubit<CompleteReason> cancelCubit(BlopEvent event);
+  _CancelCubit cancelCubit(BlopEvent event);
 
   @override
   Future<void> waitComplete(BlopEvent event) async {
@@ -24,9 +27,11 @@ abstract class _CancelCubitCompleterStrategy
             if (!_blocker.isCompleted) _blocker.complete();
             cancelCubit.emit(CompleteReason.cancel(event.id));
           },
-          error: (id, error) {
+          error: (id, error, stackTrace) {
             if (!_blocker.isCompleted) _blocker.completeError(error);
-            cancelCubit.emit(CompleteReason.cancelWithError(event.id, error));
+            cancelCubit.emit(
+              CompleteReason.cancelWithError(event.id, error, stackTrace),
+            );
           },
           orElse: () {},
         );
@@ -40,7 +45,8 @@ abstract class _CancelCubitCompleterStrategy
       // prevent earlier started process from drop later process
       if (cevent.id > event.id && !_blocker.isCompleted) {
         cevent.maybeWhen(
-          cancelWithError: (id, error) => _blocker.completeError(error),
+          cancelWithError: (id, error, stackTrace) =>
+              _blocker.completeError(error, stackTrace),
           orElse: () => _blocker.complete(),
         );
       }

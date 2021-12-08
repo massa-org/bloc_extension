@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'complete_reason.dart';
 
@@ -28,17 +29,19 @@ class _$CompleteReasonTearOff {
     );
   }
 
-  _Error error(int id, dynamic error) {
+  _Error error(int id, dynamic error, StackTrace? stackTrace) {
     return _Error(
       id,
       error,
+      stackTrace,
     );
   }
 
-  _CancelError cancelWithError(int id, dynamic error) {
+  _CancelError cancelWithError(int id, dynamic error, StackTrace? stackTrace) {
     return _CancelError(
       id,
       error,
+      stackTrace,
     );
   }
 }
@@ -54,16 +57,28 @@ mixin _$CompleteReason {
   TResult when<TResult extends Object?>({
     required TResult Function(int id) cancel,
     required TResult Function(int id) done,
-    required TResult Function(int id, dynamic error) error,
-    required TResult Function(int id, dynamic error) cancelWithError,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        error,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        cancelWithError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int id)? cancel,
+    TResult Function(int id)? done,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? cancel,
     TResult Function(int id)? done,
-    TResult Function(int id, dynamic error)? error,
-    TResult Function(int id, dynamic error)? cancelWithError,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +88,14 @@ mixin _$CompleteReason {
     required TResult Function(_Done value) done,
     required TResult Function(_Error value) error,
     required TResult Function(_CancelError value) cancelWithError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Done value)? done,
+    TResult Function(_Error value)? error,
+    TResult Function(_CancelError value)? cancelWithError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -166,14 +189,14 @@ class _$_Cancel extends _Cancel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Cancel &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is _Cancel &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -185,10 +208,24 @@ class _$_Cancel extends _Cancel {
   TResult when<TResult extends Object?>({
     required TResult Function(int id) cancel,
     required TResult Function(int id) done,
-    required TResult Function(int id, dynamic error) error,
-    required TResult Function(int id, dynamic error) cancelWithError,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        error,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        cancelWithError,
   }) {
     return cancel(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int id)? cancel,
+    TResult Function(int id)? done,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
+  }) {
+    return cancel?.call(id);
   }
 
   @override
@@ -196,8 +233,9 @@ class _$_Cancel extends _Cancel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? cancel,
     TResult Function(int id)? done,
-    TResult Function(int id, dynamic error)? error,
-    TResult Function(int id, dynamic error)? cancelWithError,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -215,6 +253,17 @@ class _$_Cancel extends _Cancel {
     required TResult Function(_CancelError value) cancelWithError,
   }) {
     return cancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Done value)? done,
+    TResult Function(_Error value)? error,
+    TResult Function(_CancelError value)? cancelWithError,
+  }) {
+    return cancel?.call(this);
   }
 
   @override
@@ -238,7 +287,7 @@ abstract class _Cancel extends CompleteReason {
   const _Cancel._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$CancelCopyWith<_Cancel> get copyWith => throw _privateConstructorUsedError;
@@ -290,14 +339,14 @@ class _$_Done extends _Done {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Done &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is _Done &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -309,10 +358,24 @@ class _$_Done extends _Done {
   TResult when<TResult extends Object?>({
     required TResult Function(int id) cancel,
     required TResult Function(int id) done,
-    required TResult Function(int id, dynamic error) error,
-    required TResult Function(int id, dynamic error) cancelWithError,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        error,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        cancelWithError,
   }) {
     return done(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int id)? cancel,
+    TResult Function(int id)? done,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
+  }) {
+    return done?.call(id);
   }
 
   @override
@@ -320,8 +383,9 @@ class _$_Done extends _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? cancel,
     TResult Function(int id)? done,
-    TResult Function(int id, dynamic error)? error,
-    TResult Function(int id, dynamic error)? cancelWithError,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
     required TResult orElse(),
   }) {
     if (done != null) {
@@ -339,6 +403,17 @@ class _$_Done extends _Done {
     required TResult Function(_CancelError value) cancelWithError,
   }) {
     return done(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Done value)? done,
+    TResult Function(_Error value)? error,
+    TResult Function(_CancelError value)? cancelWithError,
+  }) {
+    return done?.call(this);
   }
 
   @override
@@ -362,7 +437,7 @@ abstract class _Done extends CompleteReason {
   const _Done._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$DoneCopyWith<_Done> get copyWith => throw _privateConstructorUsedError;
@@ -373,7 +448,7 @@ abstract class _$ErrorCopyWith<$Res> implements $CompleteReasonCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
   @override
-  $Res call({int id, dynamic error});
+  $Res call({int id, dynamic error, StackTrace? stackTrace});
 }
 
 /// @nodoc
@@ -389,13 +464,21 @@ class __$ErrorCopyWithImpl<$Res> extends _$CompleteReasonCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? error = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_Error(
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      error == freezed ? _value.error : error,
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
     ));
   }
 }
@@ -403,33 +486,37 @@ class __$ErrorCopyWithImpl<$Res> extends _$CompleteReasonCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error extends _Error {
-  const _$_Error(this.id, this.error) : super._();
+  const _$_Error(this.id, this.error, this.stackTrace) : super._();
 
   @override
   final int id;
   @override
   final dynamic error;
+  @override
+  final StackTrace? stackTrace;
 
   @override
   String toString() {
-    return 'CompleteReason.error(id: $id, error: $error)';
+    return 'CompleteReason.error(id: $id, error: $error, stackTrace: $stackTrace)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Error &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality()
+                .equals(other.stackTrace, stackTrace));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(stackTrace));
 
   @JsonKey(ignore: true)
   @override
@@ -441,10 +528,24 @@ class _$_Error extends _Error {
   TResult when<TResult extends Object?>({
     required TResult Function(int id) cancel,
     required TResult Function(int id) done,
-    required TResult Function(int id, dynamic error) error,
-    required TResult Function(int id, dynamic error) cancelWithError,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        error,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        cancelWithError,
   }) {
-    return error(id, this.error);
+    return error(id, this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int id)? cancel,
+    TResult Function(int id)? done,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
+  }) {
+    return error?.call(id, this.error, stackTrace);
   }
 
   @override
@@ -452,12 +553,13 @@ class _$_Error extends _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? cancel,
     TResult Function(int id)? done,
-    TResult Function(int id, dynamic error)? error,
-    TResult Function(int id, dynamic error)? cancelWithError,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(id, this.error);
+      return error(id, this.error, stackTrace);
     }
     return orElse();
   }
@@ -471,6 +573,17 @@ class _$_Error extends _Error {
     required TResult Function(_CancelError value) cancelWithError,
   }) {
     return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Done value)? done,
+    TResult Function(_Error value)? error,
+    TResult Function(_CancelError value)? cancelWithError,
+  }) {
+    return error?.call(this);
   }
 
   @override
@@ -490,12 +603,14 @@ class _$_Error extends _Error {
 }
 
 abstract class _Error extends CompleteReason {
-  const factory _Error(int id, dynamic error) = _$_Error;
+  const factory _Error(int id, dynamic error, StackTrace? stackTrace) =
+      _$_Error;
   const _Error._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
-  dynamic get error => throw _privateConstructorUsedError;
+  int get id;
+  dynamic get error;
+  StackTrace? get stackTrace;
   @override
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
@@ -508,7 +623,7 @@ abstract class _$CancelErrorCopyWith<$Res>
           _CancelError value, $Res Function(_CancelError) then) =
       __$CancelErrorCopyWithImpl<$Res>;
   @override
-  $Res call({int id, dynamic error});
+  $Res call({int id, dynamic error, StackTrace? stackTrace});
 }
 
 /// @nodoc
@@ -526,13 +641,21 @@ class __$CancelErrorCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? error = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_CancelError(
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      error == freezed ? _value.error : error,
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      stackTrace == freezed
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
     ));
   }
 }
@@ -540,33 +663,37 @@ class __$CancelErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CancelError extends _CancelError {
-  const _$_CancelError(this.id, this.error) : super._();
+  const _$_CancelError(this.id, this.error, this.stackTrace) : super._();
 
   @override
   final int id;
   @override
   final dynamic error;
+  @override
+  final StackTrace? stackTrace;
 
   @override
   String toString() {
-    return 'CompleteReason.cancelWithError(id: $id, error: $error)';
+    return 'CompleteReason.cancelWithError(id: $id, error: $error, stackTrace: $stackTrace)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CancelError &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _CancelError &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality()
+                .equals(other.stackTrace, stackTrace));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(stackTrace));
 
   @JsonKey(ignore: true)
   @override
@@ -578,10 +705,24 @@ class _$_CancelError extends _CancelError {
   TResult when<TResult extends Object?>({
     required TResult Function(int id) cancel,
     required TResult Function(int id) done,
-    required TResult Function(int id, dynamic error) error,
-    required TResult Function(int id, dynamic error) cancelWithError,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        error,
+    required TResult Function(int id, dynamic error, StackTrace? stackTrace)
+        cancelWithError,
   }) {
-    return cancelWithError(id, this.error);
+    return cancelWithError(id, this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int id)? cancel,
+    TResult Function(int id)? done,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
+  }) {
+    return cancelWithError?.call(id, this.error, stackTrace);
   }
 
   @override
@@ -589,12 +730,13 @@ class _$_CancelError extends _CancelError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? cancel,
     TResult Function(int id)? done,
-    TResult Function(int id, dynamic error)? error,
-    TResult Function(int id, dynamic error)? cancelWithError,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)? error,
+    TResult Function(int id, dynamic error, StackTrace? stackTrace)?
+        cancelWithError,
     required TResult orElse(),
   }) {
     if (cancelWithError != null) {
-      return cancelWithError(id, this.error);
+      return cancelWithError(id, this.error, stackTrace);
     }
     return orElse();
   }
@@ -608,6 +750,17 @@ class _$_CancelError extends _CancelError {
     required TResult Function(_CancelError value) cancelWithError,
   }) {
     return cancelWithError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Done value)? done,
+    TResult Function(_Error value)? error,
+    TResult Function(_CancelError value)? cancelWithError,
+  }) {
+    return cancelWithError?.call(this);
   }
 
   @override
@@ -627,12 +780,14 @@ class _$_CancelError extends _CancelError {
 }
 
 abstract class _CancelError extends CompleteReason {
-  const factory _CancelError(int id, dynamic error) = _$_CancelError;
+  const factory _CancelError(int id, dynamic error, StackTrace? stackTrace) =
+      _$_CancelError;
   const _CancelError._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
-  dynamic get error => throw _privateConstructorUsedError;
+  int get id;
+  dynamic get error;
+  StackTrace? get stackTrace;
   @override
   @JsonKey(ignore: true)
   _$CancelErrorCopyWith<_CancelError> get copyWith =>
