@@ -22,10 +22,13 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
     implements RemoteValueBlopBase<T> {
   final Cubit<FutureOr<T> Function()> loaderBloc;
 
+  final bool keepOldDataOnReload;
+
   RemoteValueBlop(
     this.loaderBloc, {
     bool reloadOnLoaderChange = true,
     bool reloadOnCreate = true,
+    this.keepOldDataOnReload = false,
   }) : super(RemoteModel.initial()) {
     if (reloadOnLoaderChange) listenBlocs([loaderBloc], reload);
     if (reloadOnCreate) reload();
@@ -34,6 +37,7 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
   RemoteValueBlop.staticLoader(
     FutureOr<T> Function() loader, {
     bool reloadOnCreate = true,
+    this.keepOldDataOnReload = false,
   })  : loaderBloc = Cubits.fromValue(loader),
         super(RemoteModel.initial()) {
     if (reloadOnCreate) reload();
@@ -54,7 +58,7 @@ abstract class RemoteValueBlop<T> extends SimpleBlop<RemoteModel<T>>
   @override
   @blopProcess
   Stream<RemoteModel<T>> _reload() async* {
-    yield RemoteModel.loading();
+    if (!keepOldDataOnReload) yield RemoteModel.loading();
     late RemoteModel<T> ret;
     try {
       ret = RemoteModel.data(await loaderBloc.state());
